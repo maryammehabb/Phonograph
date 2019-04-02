@@ -5,7 +5,7 @@ from sqlalchemy import Table, create_engine
 import Restaurant
 
 Base = declarative_base()
-r= Restaurant()
+#r= Restaurant()
 
 
 class Complain(Base):

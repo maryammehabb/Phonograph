@@ -2,10 +2,9 @@ from sqlalchemy.orm import sessionmaker
 from sqlalchemy import Column, ForeignKey, Integer, String
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import Table, create_engine
-import Restaurant
+
 
 Base = declarative_base()
-r= Restaurant()
 
 
 class Customer(Base):
@@ -17,7 +16,7 @@ class Customer(Base):
     # Orders = Column()
 
 
-engine = create_engine('sqlite:///p.db')
+engine = create_engine('sqlite:///Phonograph.db')
 Base.metadata.create_all(engine)
 Base.metadata.bind = engine
 DBSession = sessionmaker(bind=engine)
