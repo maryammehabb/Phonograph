@@ -8,10 +8,8 @@ from sqlalchemy import Table, create_engine
 from sqlalchemy.orm import sessionmaker
 from decimal import Decimal, getcontext
 from pathlib import Path
-
-# to do ...
-#import restaurant
-#import tables
+import Restaurant
+import table
 
 Base = declarative_base()
 
