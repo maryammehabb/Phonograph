@@ -9,9 +9,8 @@ from sqlalchemy.orm import sessionmaker
 from decimal import Decimal, getcontext
 from pathlib import Path
 
-# to do ...
 import Restaurant
-#import tables
+import table
 
 Base = declarative_base()
 
