@@ -10,7 +10,7 @@ from decimal import Decimal, getcontext
 from pathlib import Path
 
 # to do ...
-#import restaurant
+import Restaurant
 #import tables
 
 Base = declarative_base()
@@ -55,6 +55,6 @@ def delete_branch(address,restaurantName):
     session.delete(s)
     session.commit()
 
-#add_branch('123 cairo','Mac',15,,True)
+add_branch('123 cairo','Mac',15,True)
 view_branch()
 #delete_branch(123 cairo','Mac')
