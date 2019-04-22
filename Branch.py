@@ -9,9 +9,8 @@ from sqlalchemy.orm import sessionmaker
 from decimal import Decimal, getcontext
 from pathlib import Path
 
-# to do ...
-#import restaurant
-#import tables
+import Restaurant
+import table
 
 Base = declarative_base()
 
@@ -57,6 +56,6 @@ def delete_branch(address,restaurantName):
     session.delete(s)
     session.commit()
 
-#add_branch('123 cairo','Mac',15,,True)
+add_branch('123 cairo','Mac',15,True)
 view_branch()
 #delete_branch(123 cairo','Mac')

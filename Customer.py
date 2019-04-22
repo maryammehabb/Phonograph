@@ -1,3 +1,5 @@
+
+
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy import Column, ForeignKey, Integer, String
 from sqlalchemy.ext.declarative import declarative_base
@@ -32,4 +34,3 @@ def addToDB(name):
 #def editInDB():
 
 addToDB("mariam")
-
