@@ -2,6 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$USER_HOME$/Desktop/Assignment2/.idea/Assignment2.iml" filepath="$USER_HOME$/Desktop/Assignment2/.idea/Assignment2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../NLP-Assignment2/.idea/NLP-Assignment2.iml" filepath="$PROJECT_DIR$/../NLP-Assignment2/.idea/NLP-Assignment2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../NLP-Assignment3/.idea/NLP-Assignment3.iml" filepath="$PROJECT_DIR$/../NLP-Assignment3/.idea/NLP-Assignment3.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/Phonograph.iml" filepath="$PROJECT_DIR$/.idea/Phonograph.iml" />
       <module fileurl="file://$USER_HOME$/PycharmProjects/untitled3/.idea/untitled3.iml" filepath="$USER_HOME$/PycharmProjects/untitled3/.idea/untitled3.iml" />
     </modules>

@@ -5,5 +5,8 @@
     <orderEntry type="jdk" jdkName="Python 2.7 (untitled9)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="untitled3" />
+    <orderEntry type="module" module-name="Assignment2" />
+    <orderEntry type="module" module-name="NLP-Assignment2" />
+    <orderEntry type="module" module-name="NLP-Assignment3" />
   </component>
 </module>
