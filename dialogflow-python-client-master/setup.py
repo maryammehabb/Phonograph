@@ -48,11 +48,11 @@ EXTRAS_REQUIRE = {
     'numpy': ['numpy']
 }
 
-s=r'C:\Users\Belal\Desktop\dialogflow-python-client-master\README.md'
+s=r'README.md'
 with open(s) as f:
     README = f.read()
 
-h=r'C:\Users\Belal\Desktop\dialogflow-python-client-master\HISTORY.rst'
+h=r'HISTORY.rst'
 with open(h) as f:
     HISTORY = f.read()
 

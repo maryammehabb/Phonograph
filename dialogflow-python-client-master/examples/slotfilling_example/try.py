@@ -1,4 +1,4 @@
-import  apiai
+import apiai
 import json
 def main():
     ai = apiai.ApiAI('cd4fbf5bf0bb489784266935eb751421')
