@@ -11,7 +11,9 @@ while True:
     request = ai.text_request()
     request.query = user_message
 
-    response = json.loads(request.getresponse().read())
+    response = json.loads(request.getresponse().read().decode('utf-8'))
+
+    print(response)
 
     result = response['result']
     action = result['action']
@@ -41,7 +43,7 @@ while True:
                 break
 
 
-        #print("Class Name: "+response['result']['metadata']['intentName'])
+        print("Class Name: "+response['result']['metadata']['intentName'])
         # class make reservation
         if (response['result']['metadata']['intentName'] == 'make reservation'):
             number = [response['result']['parameters']['number']]
@@ -56,4 +58,35 @@ while True:
                     print(time[x])
         # class edit reservation
         # class delete reservation
-        
+
+
+        #MAARIAM EHAB
+        #Make an order
+        if (response['result']['metadata']['intentName'] == 'make order'):
+            Ordername = [response['result']['parameters']['Ordername']]
+            number = [response['result']['parameters']['number']]
+            if(len(number)!=1 and len(Ordername) != 1):
+                for x in range(len(Ordername)):
+                    print(Ordername[x])
+                for x in range(len(number)):
+                    print(number[x])
+
+        #Edit order
+        if(response['result']['metadata']['intentName'] == 'edit order'):
+            Ordername = [response['result']['parameters']['Ordername']]
+            number = [response['result']['parameters']['number']]
+            OrderID = [response['result']['parameters']['number']]
+            if (len(number) != 1 and len(Ordername) != 1 and len(OrderID)!= 1):
+                for x in range(len(OrderID)):
+                    print(OrderID[x])
+                for x in range(len(Ordername)):
+                    print(Ordername[x])
+                for x in range(len(number)):
+                    print(number[x])
+
+        #Cancel order
+        if (response['result']['metadata']['intentName'] == 'cancel order'):
+            OrderID = [response['result']['parameters']['number']]
+            if (len(OrderID) != 1):
+                for x in range(len(OrderID)):
+                    print(OrderID[x])
