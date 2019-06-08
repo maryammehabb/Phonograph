@@ -1,0 +1,254 @@
+.hamburger {
+	background: none;
+	position: absolute;
+	top: 0;
+	right: 0;
+	line-height: 45px;
+	padding: 5px 15px 0px 15px;
+	color: #999;
+	border: 0;
+	font-size: 1.4em;
+	font-weight: bold;
+	cursor: pointer;
+	outline: none;
+	display: none;
+	z-index: 10000000000000;
+	display: none;
+}
+nav a:hover {
+	background-color: #249b9f;
+	border-radius: 3px;
+}
+.cross {
+	background: none;
+	position: absolute;
+	top: 0px;
+	right: 0;
+	padding: 7px 15px 0px 15px;
+	color: #999;
+	border: 0;
+	font-size: 3em;
+	line-height: 65px;
+	font-weight: bold;
+	cursor: pointer;
+	outline: none;
+	z-index: 10000000000000;
+	display: none;
+}
+/* Hide the inner submenus */
+
+.dl-menuwrapper li .dl-submenu {
+	display: none;
+}
+.menu {
+	z-index: 1000000;
+	font-weight: bold;
+	font-size: 0.8em;
+	width: 100%;
+	background: #f1f1f1;
+	position: absolute;
+	text-align: center;
+	font-size: 12px;
+	display: none;
+}
+.menu ul {
+	font-family: 'Montserrat', sans-serif;
+	text-transform: uppercase;
+	margin: 0;
+	padding: 0;
+	list-style-type: none;
+	list-style-image: none;
+}
+.menu li {
+	font-family: 'Montserrat', sans-serif;
+	letter-spacing: 2px;
+	text-transform: uppercase;
+	display: block;
+	padding: 15px 0 15px 0;
+	border-bottom: #dddddd 1px solid;
+}
+.menu li:hover {
+	display: block;
+	background: #ffffff;
+	padding: 15px 0 15px 0;
+	border-bottom: #dddddd 1px solid;
+}
+.menu ul li a {
+	text-decoration: none;
+	margin: 0px;
+	color: #666;
+}
+.menu ul li a:hover {
+	color: #666;
+	text-decoration: none;
+}
+.menu a {
+	text-decoration: none;
+	color: #666;
+}
+.menu a:hover {
+	text-decoration: none;
+	color: #666;
+}
+@media screen and (max-width: 960px) {
+	li a {
+		font-size: 8pt;
+	}
+	.dropdown:hover .dropdown-content {
+		margin-left: 160px;
+	}
+}
+@media screen and (max-width: 800px) {
+	li a {
+		font-size: 7pt;
+	}
+	.dropdown:hover .dropdown-content {
+		margin-left: 150px;
+	}
+}
+@media screen and (max-width: 717px) {
+	li a {
+		font-size: 6pt;
+	}
+}
+@media screen and (max-width: 686px) {
+	.EBlogo img {
+		padding: 34px 10px;
+		width: 120px;
+		margin-left: -38px;
+	}
+	.item {
+		display: none;
+	}
+	.submenu {
+		display: none;
+	}
+	.submenu li:hover {
+		display: block;
+	}
+	.hamburger {
+		background: none;
+		position: absolute;
+		top: 0;
+		right: 0;
+		padding: 26px 10px;
+		font-family: 'Montserrat', sans-serif;
+		text-transform: uppercase;
+		padding: 5px 15px 0px 15px;
+		color: #999;
+		border: 0;
+		font-size: 2em;
+		font-weight: bold;
+		cursor: pointer;
+		outline: none;
+		z-index: 10000000000000;
+	}
+	span.ProjectArrow {
+		top: 98px;
+		font-size: x-large;
+		margin-left: 7px;
+		position: absolute;
+		color: #999;
+	}
+	span.ProjectArrowLeft {
+		top: 98px;
+		font-size: x-large;
+		margin-left: -14px;
+		position: absolute;
+		color: #999;
+	}
+	.submenu li {
+		color: #999;
+	}
+	.ProjectArrow:hover {
+		color: #336699;
+	}
+	.ProjectArrowLeft:hover {
+		color: #336699;
+	}
+	button.cross {
+		margin-top: 13px;
+	}
+	button.hamburger {
+		margin-top: 13px;
+	}
+	.cross {
+		background: none;
+		position: absolute;
+		top: 0px;
+		right: 0;
+		padding: 7px 15px 10px 15px;
+		color: #999;
+		border: 0;
+		font-size: 3em;
+		line-height: 65px;
+		font-weight: bold;
+		cursor: pointer;
+		outline: none;
+		z-index: 10000000000000;
+	}
+	.menu {
+		margin-top: 30px;
+		z-index: 5;
+		font-weight: bold;
+		font-size: 0.8em;
+		width: 100%;
+		background: #09152C;
+		position: absolute;
+		text-align: center;
+		font-size: 12px;
+	}
+	.menu ul {
+		margin: 0;
+		padding: 0;
+		list-style-type: none;
+		list-style-image: none;
+	}
+	.menu li {
+		display: block;
+		padding: 15px 0 15px 0;
+		border-bottom: #dddddd 1px solid;
+	}
+	.menu li:hover {
+		display: block;
+		background: #249b9f;
+		padding: 15px 0 15px 0;
+		border-bottom: #dddddd 1px solid;
+	}
+	.menu ul li a {
+		text-decoration: none;
+		margin: 0px;
+		color: #666;
+	}
+	.menu ul li a:hover {
+		color: #666;
+		text-decoration: none;
+	}
+	.menu a {
+		text-decoration: none;
+		color: #fff;
+	}
+	.menu a:hover {
+		text-decoration: none;
+		color: #fff;
+	}
+	nav {
+		display: block;
+	}
+	.nav_bar {
+		height: 10px;
+	}
+	.EBlogo img {
+		z-index: 1000000;
+		width: 135px;
+	}
+	a {
+		color: #336699;
+	}
+}
+
+@media screen and (min-width: 686px) {
+	.hamburger {
+		display: none;
+	}
+}
