@@ -1,0 +1,60 @@
+from Model import Base, Reservation, Restaurant, User, Customer, Branch, Table, Complaint, Item, Admin, Order
+from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker
+
+engine = create_engine('sqlite:///PH.db')
+Base.metadata.bind = engine
+DBSession = sessionmaker(bind=engine)
+session = DBSession()
+
+
+def delete_reservation(reservation):
+    session.delete(reservation)
+    session.commit()
+
+
+def delete_restaurant(restaurant):
+    session.delete(restaurant)
+    session.commit()
+
+
+def delete_user(user):
+    session.delete(user)
+    session.commit()
+
+
+def delete_customer(customer):
+    session.delete(customer)
+    session.commit()
+
+
+def delete_branch(branch):
+    session.delete(branch)
+    session.commit()
+
+
+def delete_admin(admin):
+    session.delete(admin)
+    session.commit()
+
+
+def delete_table(table):
+    session.delete(table)
+    session.commit()
+
+
+def delete_item(item):
+    session.delete(item)
+    session.commit()
+
+
+def delete_complaint(complaint):
+    session.delete(complaint)
+    session.commit()
+
+
+def delete_order(order):
+    session.delete(order)
+    session.commit()
+
+
