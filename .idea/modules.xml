@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$USER_HOME$/PycharmProjects/design/.idea/design.iml" filepath="$USER_HOME$/PycharmProjects/design/.idea/design.iml" />
       <module fileurl="file://$PROJECT_DIR$/dialogflow-python-client-master/.idea/dialogflow-python-client-master.iml" filepath="$PROJECT_DIR$/dialogflow-python-client-master/.idea/dialogflow-python-client-master.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../django-master/.idea/django-master.iml" filepath="$PROJECT_DIR$/../django-master/.idea/django-master.iml" />
     </modules>
   </component>
 </project>
