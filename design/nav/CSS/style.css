@@ -34,3 +34,8 @@
     grid-template-columns: repeat(2, 1fr);
   }
 }
+#bar-chart-horizontal
+{
+padding-left: 5%;
+padding-right: 30%;
+}

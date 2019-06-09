@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" type="image/png" sizes="16x16" href="../plugins/images/favicon.png">
+    <title>PHONOGRAPH</title>
+    <!-- Bootstrap Core CSS -->
+    <link href="bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Menu CSS -->
+    <link href="../plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.css" rel="stylesheet">
+    <!-- toast CSS -->
+    <link href="../plugins/bower_components/toast-master/css/jquery.toast.css" rel="stylesheet">
+    <!-- morris CSS -->
+    <link href="../plugins/bower_components/morrisjs/morris.css" rel="stylesheet">
+    <!-- animation CSS -->
+    <link href="css/animate.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="css/style.css" rel="stylesheet">
+    <!-- color CSS -->
+    <link href="css/colors/blue-dark.css" id="theme" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Preloader -->
+    <div class="preloader">
+        <div class="cssload-speeding-wheel"></div>
+    </div>
+    <div id="wrapper">
+        <!-- Navigation -->
+        <nav class="navbar navbar-default navbar-static-top m-b-0">
+            <div class="navbar-header"> <a class="navbar-toggle hidden-sm hidden-md hidden-lg " href="javascript:void(0)" data-toggle="collapse" data-target=".navbar-collapse"><i class="fa fa-bars"></i></a>
+                <div class="top-left-part">
+                <a class="logo" href="index.html">
+                    <!--<b><img src="../plugins/images/pixeladmin-logo.png" alt="home" /></b><span class="hidden-xs"><img src="../plugins/images/pixeladmin-text.png" alt="home" /></span>-->
+                    <span class="hidden-xs" class="logo"><img src="logo.png" alt="home" /></span>
+                    </a>
+                </div>
+            </div>
+            <!-- /.navbar-header -->
+            <!-- /.navbar-top-links -->
+            <!-- /.navbar-static-side -->
+        </nav>
+        <!-- Left navbar-header -->
+        <div class="navbar-default sidebar" role="navigation">
+            <div class="sidebar-nav navbar-collapse slimscrollsidebar">
+                <ul class="nav" id="side-menu">
+                    <li style="padding: 10px 0 0;">
+                        <a href="index.html" class="waves-effect"><i class="fa fa-clock-o fa-fw" aria-hidden="true"></i><span class="hide-menu">HOME</span></a>
+                    </li>
+                    <li>
+                        <a href="#ord" class="waves-effect"><i class="fa fa-user fa-fw" aria-hidden="true"></i><span class="hide-menu">Orders</span></a>
+                    </li>
+                    <li>
+                        <a href="#cus" class="waves-effect"><i class="fa fa-table fa-fw" aria-hidden="true"></i><span class="hide-menu">Customers</span></a>
+                    </li>
+                    <li>
+                        <a href="#res" class="waves-effect"><i class="fa fa-font fa-fw" aria-hidden="true"></i><span class="hide-menu">Reservations</span></a>
+                    </li>
+                    <li>
+                        <a href="#com" class="waves-effect"><i class="fa fa-globe fa-fw" aria-hidden="true"></i><span class="hide-menu">Complains</span></a>
+                    </li>
+                    <li>
+                        <a href="#com" class="waves-effect"><i class="fa fa-globe fa-fw" aria-hidden="true"></i><span class="hide-menu">Edit Information</span></a>
+                    </li>
+                    <li>
+                        <a href="#com" class="waves-effect"><i class="fa fa-globe fa-fw" aria-hidden="true"></i><span class="hide-menu">LogOUT</span></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-- Left navbar-header end -->
+        <!-- Page Content -->
+        <div id="page-wrapper">
+            <div class="container-fluid">
+                <!-- row -->
+                <div class="row">
+                    <!--col -->
+                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                        <div class="white-box">
+                            <div class="col-in row">
+                                <div class="col-md-6 col-sm-6 col-xs-6"> <i data-icon="E" class="linea-icon linea-basic"></i>
+                                    <h5 class="text-muted vb">Orders</h5> </div>
+                                <div class="col-md-6 col-sm-6 col-xs-6">
+                                    <h3 class="counter text-right m-t-15 text-danger">23</h3> </div>
+                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                    <div class="progress">
+                                        <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.col -->
+                    <!--col -->
+                    <!--CUSTOMERS-->
+                    <!-- /.col -->
+                    <!--col -->
+                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                        <div class="white-box">
+                            <div class="col-in row">
+                                <div class="col-md-6 col-sm-6 col-xs-6"> <i class="linea-icon linea-basic" data-icon="&#xe00b;"></i>
+                                    <h5 class="text-muted vb">Reservations</h5> </div>
+                                <div class="col-md-6 col-sm-6 col-xs-6">
+                                    <h3 class="counter text-right m-t-15 text-primary">157</h3> </div>
+                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                    <div class="progress">
+                                        <div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.col -->
+                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                        <div class="white-box">
+                            <div class="col-in row">
+                                <div class="col-md-6 col-sm-6 col-xs-6"> <i class="linea-icon linea-basic" data-icon="&#xe00b;"></i>
+                                    <h5 class="text-muted vb">Complains</h5> </div>
+                                <div class="col-md-6 col-sm-6 col-xs-6">
+                                    <h3 class="counter text-right m-t-15 text-primary">157</h3> </div>
+                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                    <div class="progress">
+                                        <div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.row -->
+                <!--row -->
+                
+                <!--row -->
+                <div class="row" id="ord">
+                    <div class="col-sm-12">
+                        <div class="white-box">
+                            <h3 class="box-title">Orders</h3>
+                            <div class="table-responsive">
+                                <table class="table ">
+                                    <thead>
+                                        <tr>
+                                            <th>NAME</th>
+                                            <th>ORDER</th>
+                                            <th>DATE</th>
+                                            <th>PRICE</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="txt-oflo">Pixel admin</td>
+                                            <td>SALE</td>
+                                            <td class="txt-oflo">April 18</td>
+                                            <td><span class="text-success">$24</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="txt-oflo">Real Homes</td>
+                                            <td>EXTENDED</td>
+                                            <td class="txt-oflo">April 19</td>
+                                            <td><span class="text-info">$1250</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="txt-oflo">Medical Pro</td>
+                                            <td>TAX</td>
+                                            <td class="txt-oflo">April 20</td>
+                                            <td><span class="text-danger">-$24</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="txt-oflo">Hosting press</td>
+                                            <td>SALE</td>
+                                            <td class="txt-oflo">April 21</td>
+                                            <td><span class="text-success">$24</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="txt-oflo">Helping Hands</td>
+                                            <td>MEMBER</td>
+                                            <td class="txt-oflo">April 22</td>
+                                            <td><span class="text-success">$24</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="txt-oflo">Digital Agency</td>
+                                            <td>SALE</td>
+                                            <td class="txt-oflo">April 23</td>
+                                            <td><span class="text-danger">-$14</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="txt-oflo">Helping Hands</td>
+                                            <td>MEMBER</td>
+                                            <td class="txt-oflo">April 22</td>
+                                            <td><span class="text-success">$64</span></td>
+                                        </tr>
+                                    </tbody>
+                                </table></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" id="cus">
+                    <div class="col-sm-12">
+                        <div class="white-box">
+                            <h3 class="box-title">Customers</h3>
+                            <div class="table-responsive">
+                                <table class="table ">
+                                    <thead>
+                                        <tr>
+                                            <th>NAME</th>
+                                            <th>ADDRESS</th>
+                                            <th>MOBILE</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="txt-oflo">Pixel admin</td>
+                                        </tr>
+                                    </tbody>
+                                </table></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" id="res">
+                    <div class="col-sm-12">
+                        <div class="white-box">
+                            <h3 class="box-title">Reservations</h3>
+                            <div class="table-responsive">
+                                <table class="table ">
+                                    <thead>
+                                        <tr>
+                                            <th>NAME</th>
+                                            <th>TABLE</th>
+                                            <th>DATE</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="txt-oflo">Pixel admin</td>
+                                            <td>SALE</td>
+                                            <td class="txt-oflo">April 18</td>
+                                        </tr>
+                                    </tbody>
+                                </table></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" id="com">
+                    <div class="col-sm-12">
+                        <div class="white-box">
+                            <h3 class="box-title">Complians</h3>
+                            <div class="table-responsive">
+                                <table class="table ">
+                                    <thead>
+                                        <tr>
+                                            <th>NAME</th>
+                                            <th>Complain</th>
+                                            <th>DATE</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="txt-oflo">Pixel admin</td>
+                                            <td>SALE</td>
+                                            <td class="txt-oflo">April 18</td>
+                                        </tr>
+                                    </tbody>
+                                </table></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.row -->
+                <!-- row -->
+                <!-- /.row -->
+            </div>
+        </div>
+        <!-- /#page-wrapper -->
+    </div>
+    <!-- /#wrapper -->
+    <!-- jQuery -->
+    <script src="../plugins/bower_components/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap Core JavaScript -->
+    <script src="bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- Menu Plugin JavaScript -->
+    <script src="../plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.js"></script>
+    <!--slimscroll JavaScript -->
+    <script src="js/jquery.slimscroll.js"></script>
+    <!--Wave Effects -->
+    <script src="js/waves.js"></script>
+    <!--Counter js -->
+    <script src="../plugins/bower_components/waypoints/lib/jquery.waypoints.js"></script>
+    <script src="../plugins/bower_components/counterup/jquery.counterup.min.js"></script>
+    <!--Morris JavaScript -->
+    <script src="../plugins/bower_components/raphael/raphael-min.js"></script>
+    <script src="../plugins/bower_components/morrisjs/morris.js"></script>
+    <!-- Custom Theme JavaScript -->
+    <script src="js/custom.min.js"></script>
+    <script src="js/dashboard1.js"></script>
+    <script src="../plugins/bower_components/toast-master/js/jquery.toast.js"></script>
+</body>
+
+</html>
