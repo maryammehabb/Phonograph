@@ -34,3 +34,11 @@
     grid-template-columns: repeat(2, 1fr);
   }
 }
+<<<<<<< HEAD
+=======
+#bar-chart-horizontal
+{
+padding-left: 5%;
+padding-right: 30%;
+}
+>>>>>>> 5eb0f867eba3c7e64033d172a401d3b9d402694c
