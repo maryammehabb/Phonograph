@@ -115,6 +115,7 @@ class Reservation(Base):
 class Order(Base):
     __tablename__ = 'Order'
     id = Column(Integer, primary_key=True)
+    numOfOrders= Column (Integer)
     items= Column (TEXT)
     time = Column(TEXT)
     delivery = Column(Boolean)
