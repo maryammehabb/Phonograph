@@ -63,9 +63,9 @@ def add_reservation(id, cusID, numofPeople, branchID, tableID, resID, tr, tm):
     session.commit()
 
 
-def add_order(id, time, delivery, price, branchID, timeD, done, cusID, content):
-    order = Order(id=id, time=time, delivery=delivery, price=price, branchID=branchID, timeDelivered=timeD, done=done,
-                  cusID=cusID, content=content)
+def add_order(id, time, delivery, price, resID, timeD, done, cusID, content,Items):
+    order = Order(id=id, time=time, delivery=delivery, price=price, resID=resID, timeDelivered=timeD, done=done,
+                  cusID=cusID, content=content, items=Items)
     session.add(order)
     session.commit()
 

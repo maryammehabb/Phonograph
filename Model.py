@@ -115,10 +115,11 @@ class Reservation(Base):
 class Order(Base):
     __tablename__ = 'Order'
     id = Column(Integer, primary_key=True)
+    items= Column (TEXT)
     time = Column(TEXT)
     delivery = Column(Boolean)
     price = Column(Float)
-    branchID = Column(Integer, ForeignKey('branch.id'))
+    resID = Column(Integer, ForeignKey('restaurant.id'))
     timeDelivered = Column(TEXT)
     done = Column(Boolean)
     cusID = Column(Integer, ForeignKey('Customer.id'))
