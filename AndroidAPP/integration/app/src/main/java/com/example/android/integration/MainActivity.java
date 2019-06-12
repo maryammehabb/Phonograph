@@ -33,7 +33,11 @@ import java.io.OutputStreamWriter;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
 import java.net.URLConnection;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -51,6 +55,7 @@ public class MainActivity extends AppCompatActivity implements RecognitionListen
     String intentt = "";
     String response = "";
     String complain;
+    String time;
     ArrayList<String> params = new ArrayList<String>();
     ArrayList<String> details = new ArrayList<String>();
 
@@ -134,9 +139,17 @@ public class MainActivity extends AppCompatActivity implements RecognitionListen
 
 
     public boolean updateDatabase(String intent){
-        if (intent.equals("\"make order\"")){
-
+        if (intentt.equals("\"make order\"")){
+            Order order = new Order(time, true , 0 , 1 , "0", 0, 0 );
+            //meals = details.get(0)
+            //numberOfMeals = details.get(1)
+            //leave cusId & resturaunt_id to the integration (we get it from prev page)
+            //make function in dbHelper to access items table and calc price
+            //make a function in dbHelper insertOrder
+            //DBHelper d
+            // d.insertOrder(order)
         }
+        //make if condition for each intent
         return false;
     }
 
@@ -208,13 +221,10 @@ public class MainActivity extends AppCompatActivity implements RecognitionListen
 
         for(int i = 0 ; i<keys.size() ; i++){
         }
-        /*for(int i = 0 ; i<keys.size() ; i++){
-            Log.d("KEYS", keys.get(i) );
-        }*/
         intentt = map.get("\"intentName\"");
         response = map.get("\"speech\"");
 
-        Log.d("Intent" ,map.get("\"intentName\""));
+            Log.d("Intent" ,map.get("\"intentName\""));
 
         text = sb.toString();
 
@@ -223,7 +233,6 @@ public class MainActivity extends AppCompatActivity implements RecognitionListen
         JSONObject fulfillment = null;
         JSONObject parameters = null;
         String speech = null;
-//            if (object.has("fulfillment")) {
         fulfillment = object.getJSONObject("fulfillment");
         parameters = object.getJSONObject("parameters");
         for (int i =0 ; i< parameters.length() ; i++){
@@ -232,12 +241,11 @@ public class MainActivity extends AppCompatActivity implements RecognitionListen
             Log.d("params" , parameters.names().get(i).toString() + " : " +parameters.getString(parameters.names().get(i).toString()));
         }
 
-
-//                if (fulfillment.has("speech")) {
         speech = fulfillment.optString("speech");
-//                }
-//            }
-
+        Calendar cal = Calendar. getInstance();
+        Date date=cal. getTime();
+        DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
+        time=dateFormat. format(date);
         Log.d("karma ", "response is " + text);
         return speech;
 
@@ -351,9 +359,6 @@ public class MainActivity extends AppCompatActivity implements RecognitionListen
         txtSpeechInput.setText(matches.get(0));
         new RetrieveFeedTask().execute(txtSpeechInput.getText().toString());
         Log.i("LLLLL",matches.get(0));
-
-
-
     }
 
     @Override
@@ -377,9 +382,6 @@ public class MainActivity extends AppCompatActivity implements RecognitionListen
                 Log.d("nagham" , intentt);
                 return s;
             } else{
-
-
-
                 try {
                     s = GetText(voids[0]);
                 } catch (UnsupportedEncodingException e) {
@@ -389,7 +391,6 @@ public class MainActivity extends AppCompatActivity implements RecognitionListen
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-
 
                 return s;
             }
@@ -410,17 +411,4 @@ public class MainActivity extends AppCompatActivity implements RecognitionListen
                 mSpeechRecognizer.startListening(intent);
         }
     }
-
-
-
-
-
 }
-
-
-
-
-
-
-
-
