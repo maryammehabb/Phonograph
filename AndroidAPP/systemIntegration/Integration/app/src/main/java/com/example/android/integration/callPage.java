@@ -65,6 +65,24 @@ public class callPage extends AppCompatActivity implements RecognitionListener {
         return intentt;
     }
 
+    //to mute the beep
+    public void mute(){
+        AudioManager amanager=(AudioManager)getSystemService(Context.AUDIO_SERVICE);
+        amanager.setStreamMute(AudioManager.STREAM_NOTIFICATION, true);
+        amanager.setStreamMute(AudioManager.STREAM_ALARM, true);
+        amanager.setStreamMute(AudioManager.STREAM_MUSIC, true);
+        amanager.setStreamMute(AudioManager.STREAM_RING, true);
+        amanager.setStreamMute(AudioManager.STREAM_SYSTEM, true);
+    }
+    public void unmute(){
+        AudioManager amanager=(AudioManager)getSystemService(Context.AUDIO_SERVICE);
+        amanager.setStreamMute(AudioManager.STREAM_NOTIFICATION, false);
+        amanager.setStreamMute(AudioManager.STREAM_ALARM, false);
+        amanager.setStreamMute(AudioManager.STREAM_MUSIC, false);
+        amanager.setStreamMute(AudioManager.STREAM_RING, false);
+        amanager.setStreamMute(AudioManager.STREAM_SYSTEM, false);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -146,21 +164,14 @@ public class callPage extends AppCompatActivity implements RecognitionListener {
 
     private void promptSpeechInput() {
 
-        //to mute the beep
-
-        AudioManager amanager=(AudioManager)getSystemService(Context.AUDIO_SERVICE);
-        amanager.setStreamMute(AudioManager.STREAM_NOTIFICATION, false);
-        amanager.setStreamMute(AudioManager.STREAM_ALARM, false);
-        amanager.setStreamMute(AudioManager.STREAM_MUSIC, false);
-        amanager.setStreamMute(AudioManager.STREAM_RING, false);
-        amanager.setStreamMute(AudioManager.STREAM_SYSTEM, false);
-
+        mute();
         intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,
                 RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
         intent.putExtra(RecognizerIntent.EXTRA_CALLING_PACKAGE,
                 this.getPackageName());
         mSpeechRecognizer.setRecognitionListener(this);
         mSpeechRecognizer.startListening(intent);
+
     }
 
 
@@ -412,6 +423,8 @@ public class callPage extends AppCompatActivity implements RecognitionListener {
             }
         }
 
+
+
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
@@ -425,6 +438,7 @@ public class callPage extends AppCompatActivity implements RecognitionListener {
                 mSpeechRecognizer.stopListening();
                 mSpeechRecognizer.cancel();
                 //Thread thread = new Thread();
+                unmute();
                 toSpeech.speak(s, TextToSpeech.QUEUE_FLUSH, null);
                 try {
                     Thread.sleep(2000);
@@ -436,6 +450,7 @@ public class callPage extends AppCompatActivity implements RecognitionListener {
                 Toast.makeText(getBaseContext(), "Call has ended", Toast.LENGTH_SHORT).show();
                 mSpeechRecognizer.cancel();
             } else {
+                mute();
                 mSpeechRecognizer.startListening(intent);
             }
         }
