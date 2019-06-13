@@ -8,13 +8,21 @@ public class Order {
     private int restaurant_id;
     private String time_delivered;
     private boolean done;
+    private int cusId;
+    private String meals;
+    private  int numberOfMeals;
 
-    public Order(String time, boolean delivery, float price, int cusId, String meals) {
+
+
+
+
+    public Order(String time, boolean delivery, float price, int cusId, String meals, int numberOfMeals) {
         this.time = time;
         this.delivery = delivery;
         this.price = price;
         this.cusId = cusId;
         this.meals = meals;
+        this.numberOfMeals=numberOfMeals;
     }
 
     public String getMeals() {
@@ -25,8 +33,7 @@ public class Order {
         this.meals = meals;
     }
 
-    private int cusId;
-    private String meals;
+
     public int getId() {
         return id;
     }
@@ -89,5 +96,13 @@ public class Order {
 
     public void setCusId(int cusId) {
         this.cusId = cusId;
+    }
+
+    public int getNumberOfMeals() {
+        return numberOfMeals;
+    }
+
+    public void setNumberOfMeals(int numberOfMeals) {
+        this.numberOfMeals = numberOfMeals;
     }
 }
