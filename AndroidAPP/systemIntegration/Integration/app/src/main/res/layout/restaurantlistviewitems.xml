@@ -18,11 +18,13 @@
         android:id="@+id/bt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="270dp"
+        android:fontFamily="sans-serif-condensed"
+        android:background="#F49409"
         android:focusable="false"
         android:onClick="clickMe"
-        android:padding="10sp"
-        android:layout_marginLeft="250sp"
-        >
+        android:textColor="#1F1F1F"
+        android:textSize="20dp">
 
     </Button>
 </LinearLayout>
