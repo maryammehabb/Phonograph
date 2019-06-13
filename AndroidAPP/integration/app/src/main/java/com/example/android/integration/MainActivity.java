@@ -136,12 +136,18 @@ public class MainActivity extends AppCompatActivity implements RecognitionListen
         mSpeechRecognizer.startListening(intent);
     }
 
+    int cusID;
+    int noOfPeople;
+    int tableID;
+    String timeReserved;
+    String timeMade;
+
 
 
     public boolean updateDatabase(String intent){
         if (intentt.equals("\"make order\"")){
-            Order order = new Order(time, true , 0 , 1 , "0", 0, 0 );
-            //meals = details.get(0)
+            Order order = new Order(time, true , 0 , 1 , "0");
+            meals = details.get(0);
             //numberOfMeals = details.get(1)
             //leave cusId & resturaunt_id to the integration (we get it from prev page)
             //make function in dbHelper to access items table and calc price
@@ -150,6 +156,18 @@ public class MainActivity extends AppCompatActivity implements RecognitionListen
             // d.insertOrder(order)
         }
         //make if condition for each intent
+        //if Customer make a reservation
+        if(intentt.equals("make reservation")){
+            Reservation reserve = new Reservation(cusID, noOfPeople, tableID, timeReserved, timeMade);
+            //cusID = details.get();
+            //noOfPeople = String.valueOf(details.get(0));
+            //tableID = details.get();
+            timeReserved = details.get(1);
+            Log.d(TAG, "hayy");
+            //timeMade = details.get();
+            //make function to reserve in dbhelper
+
+        }
         return false;
     }
 
