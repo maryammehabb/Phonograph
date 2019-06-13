@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.media.AudioManager;
 import android.os.AsyncTask;
+import android.os.Handler;
 import android.speech.RecognitionListener;
 import android.speech.RecognizerIntent;
 import android.speech.SpeechRecognizer;
@@ -88,7 +89,6 @@ public class callPage extends AppCompatActivity implements RecognitionListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_call_page);
 
-
         Intent intent1 = getIntent();
         final String[] info = intent1.getStringArrayExtra("info");
         //  cusId   cusName  restID
@@ -120,14 +120,19 @@ public class callPage extends AppCompatActivity implements RecognitionListener {
             }
         });
 
-        btnSpeak.setOnClickListener(new View.OnClickListener() {
+        new Handler().postDelayed(new Runnable(){
+            public void run(){
+                promptSpeechInput();
+            }
+        }, 1000);
+
+       /* btnSpeak.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
                 promptSpeechInput();
             }
-        });
-
+        });*/
     }
 
     @Override

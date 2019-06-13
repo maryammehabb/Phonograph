@@ -34,7 +34,7 @@ public class resturauntList extends AppCompatActivity {
     public void clickMe(View view){
         Button bt = (Button) view ;
         //setContentView(R.layout.activity_call_page);
-        Intent intent = new Intent(resturauntList.this, press.class);
+        Intent intent = new Intent(resturauntList.this, callPage.class);
         data2[0] = data1 [0];
         data2[1] = data1 [1];
         data2[2] = (String) bt.getTag();
