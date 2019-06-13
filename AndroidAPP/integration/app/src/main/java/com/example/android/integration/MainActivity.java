@@ -140,7 +140,7 @@ public class MainActivity extends AppCompatActivity implements RecognitionListen
 
     public boolean updateDatabase(String intent){
         if (intentt.equals("\"make order\"")){
-            Order order = new Order(time, true , 0 , 1 , "0", 0, 0 );
+          Order order = new Order(time, true , 0 , 1 , "0" );
             //meals = details.get(0)
             //numberOfMeals = details.get(1)
             //leave cusId & resturaunt_id to the integration (we get it from prev page)
