@@ -146,9 +146,6 @@ public class MainActivity extends AppCompatActivity implements RecognitionListen
 
     public boolean updateDatabase(String intent){
         if (intentt.equals("\"make order\"")){
-            Order order = new Order(time, true , 0 , 1 , "0");
-            meals = details.get(0);
-            //numberOfMeals = details.get(1)
           Order order = new Order(time, true , 0 , 1 , "0",0 );
             String meals = details.get(0);
             int numberOfMeals = Integer.valueOf(details.get(1));
@@ -184,12 +181,31 @@ public class MainActivity extends AppCompatActivity implements RecognitionListen
         if(intentt.equals("make reservation")){
             Reservation reserve = new Reservation(cusID, noOfPeople, tableID, timeReserved, timeMade);
             //cusID = details.get();
-            //noOfPeople = String.valueOf(details.get(0));
+            noOfPeople = Integer.parseInt(details.get(0));
             //tableID = details.get();
             timeReserved = details.get(1);
-            Log.d(TAG, "hayy");
+            //Log.d(TAG, "hayy");
             //timeMade = details.get();
-            //make function to reserve in dbhelper
+            DBHhelper db = new DBHhelper(getApplicationContext());
+            db.reserve(reserve);
+        }
+        if (intentt.equals("\"edit reservation\"")){
+            Reservation reserve = new Reservation(cusID, noOfPeople, tableID, timeReserved, timeMade);
+            //cusID = details.get();
+            noOfPeople = Integer.parseInt(details.get(0));
+            //tableID = details.get();
+            timeReserved = details.get(1);
+            //Log.d(TAG, "hayy");
+            //timeMade = details.get();
+            DBHhelper db = new DBHhelper(getApplicationContext());
+            db.updateReservation(reserve, ID);
+        }
+        if (intent.equals("\"delete reservation\""))
+        {
+            Reservation reservation = new Reservation(cusID, noOfPeople, tableID, timeReserved, timeMade);
+            String id =details.get(0);
+            DBHhelper db=new DBHhelper(getApplicationContext());
+            db.deleteReservation(id);
 
         }
         return false;

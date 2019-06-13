@@ -153,6 +153,36 @@ public class DBHhelper extends SQLiteOpenHelper {
         contentValues.put("numberOfMeals", numOfMeals);
         db.update("Order",contentValues,"id=?",new String[] {ID});
     }
+    public boolean reserve (Reservation reservation)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues c = new ContentValues();
+        c.put("numOfPeople", reservation.getNoOfPeople());
+        c.put("timeReserved", reservation.getTimeReserved());
+        c.put("timeMade", reservation.getTimeMade());
+        long result = db.insert("reservation",null, c);
+        if (result==-1)
+            return true;
+        else
+            return false;
 
+    }
+
+    public void updateReservation (Reservation reservation, String ID)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues c = new ContentValues();
+        c.put("numOfPeople", reservation.getNoOfPeople());
+        c.put("timeReserved", reservation.getTimeReserved());
+        db.update("Reservation", c,"id=?",new String[] {ID});
+    }
+
+    public void deleteReservation(String ID)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete("Reservation","id=?",new String[] {ID});
+        db.close();
+
+    }
 
 }
