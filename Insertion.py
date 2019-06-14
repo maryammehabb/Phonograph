@@ -32,8 +32,8 @@ def add_compliant(id, branchID, resID, file, cusID):
     session.commit()
 
 
-def add_item(Id, resID, name, price, orderID):
-    item = Item(id=Id, resID=resID, name=name, price=price, orderID=orderID)
+def add_item(Id, resID, name, price, orderID,kids):
+    item = Item(id=Id, resID=resID, name=name, price=price, orderID=orderID,kids=kids)
     session.add(item)
     session.commit()
 
