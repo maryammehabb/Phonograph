@@ -179,9 +179,77 @@ public class callPage extends AppCompatActivity implements RecognitionListener {
 
     }
 
+    int cusID;
+    int noOfPeople;
+    int tableID;
+    String timeReserved;
+    String timeMade;
+    String o = "Hi";
+    String time;
+
 
     public boolean updateDatabase(String intent){
-        if (intent.equals("\"make order\"")){
+        if (intentt.equals("\"make order\"")){
+            Order order = new Order(time, true , 0 , 1 , "0",0 );
+            String meals = details.get(0);
+            int numberOfMeals = Integer.valueOf(details.get(1));
+            //leave cusId & resturaunt_id to the integration (we get it from prev page)
+            //make function in dbHelper to access items table and calc price
+            //make a function in dbHelper insertOrde
+            order.setMeals(meals);
+            order.setNumberOfMeals(numberOfMeals);
+            dbHelper d= new dbHelper(getApplicationContext());
+            d.insertOrder(order);
+        }
+        if (intent.equals("\"delete order\""))
+        {
+            Order order = new Order(time, true , 0 , 1 , "0",0 );
+            String id =details.get(0);
+            dbHelper d=new dbHelper(getApplicationContext());
+            d.deleteOrder(id);
+
+        }
+        if (intent.equals("\"edit order\""))
+        {
+            Order order = new Order(time, true , 0 , 1 , "0",0 );
+            String id =details.get(0);
+            String newOrder= details.get(1);
+            String numberOfMeals= details.get(2);
+            dbHelper d=new dbHelper(getApplicationContext());
+            d.updateData(order,id,newOrder,numberOfMeals);
+
+
+        }
+        //make if condition for each intent
+        //if Customer make a reservation
+        if(intentt.equals("make reservation")){
+            Reservation reserve = new Reservation(cusID, noOfPeople, tableID, timeReserved, timeMade);
+            //cusID = details.get();
+            noOfPeople = Integer.parseInt(details.get(0));
+            //tableID = details.get();
+            timeReserved = details.get(1);
+            //Log.d(TAG, "hayy");
+            //timeMade = details.get();
+            dbHelper db = new dbHelper(getApplicationContext());
+            db.reserve(reserve);
+        }
+        if (intentt.equals("\"edit reservation\"")){
+            Reservation reserve = new Reservation(cusID, noOfPeople, tableID, timeReserved, timeMade);
+            //cusID = details.get();
+            noOfPeople = Integer.parseInt(details.get(0));
+            //tableID = details.get();
+            timeReserved = details.get(1);
+            //Log.d(TAG, "hayy");
+            //timeMade = details.get();
+            dbHelper db = new dbHelper(getApplicationContext());
+            db.updateReservation(reserve, ID);
+        }
+        if (intent.equals("\"delete reservation\""))
+        {
+            Reservation reservation = new Reservation(cusID, noOfPeople, tableID, timeReserved, timeMade);
+            String id =details.get(0);
+            dbHelper db=new dbHelper(getApplicationContext());
+            db.deleteReservation(id);
 
         }
         return false;
