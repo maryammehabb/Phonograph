@@ -28,6 +28,7 @@ public class editInformation extends AppCompatActivity {
     private TextView tvPhone;
     private TextView tvName;
     private TextView tvAddress;
+    String [] data;
 
 
     @Override
@@ -68,11 +69,17 @@ public class editInformation extends AppCompatActivity {
         btnEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent intent = getIntent();
+                data = intent.getStringArrayExtra("info");
                 userInfo[1] = etPassword.getText().toString();
                 userInfo[2] = etName.getText().toString();
                 userInfo[3] = etPhone.getText().toString();
                 userInfo[4] = etAddress.getText().toString();
                 int x = db.update(userInfo);
+                data[1] = userInfo[2];
+                Intent intentt = new Intent(editInformation.this, resturauntList.class);
+                intentt.putExtra("info", data);
+                startActivity(intentt);
                 /*if(x==true) Log.d("UPDATE" , "true");
                 else Log.d("UPDATE" , "false");*/
                 Log.d("HAA" , Integer.toString(x));
