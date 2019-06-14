@@ -373,7 +373,7 @@ public class dbHelper extends SQLiteOpenHelper {
 
     }
 
-    public boolean smokingArea(int id)
+    public boolean smokingArea(String id)
     {
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor c = db.rawQuery("SELECT smokingArea FROM branch WHERE id = "+id,null);
@@ -383,17 +383,15 @@ public class dbHelper extends SQLiteOpenHelper {
             return false;
     }
 
-    public List<item> getMenu(String id){
+    public List<String> getMenu(String id){
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor c;
-        ArrayList<item> menu = new ArrayList<item>();
-        c = db.rawQuery("SELECT * FROM Item WHERE resID = "+id,null);
+        ArrayList<String> menu = new ArrayList<String>();
+        c = db.rawQuery("SELECT name, price FROM Item WHERE resID = "+id,null);
         if(c!=null){
             c.moveToFirst();
             do {
-                item i;
-                item menu_item = new item(c.getString(0),c.getString(1),c.getString(2),c.getFloat(3));
-                menu.add(menu_item);
+                menu.add(Integer.parseInt(c.getString(0)), c.getString(1));
             }
             while (c.moveToNext());
             c.close();
@@ -403,7 +401,7 @@ public class dbHelper extends SQLiteOpenHelper {
     }
 
 
-    public boolean kidsArea(int id)
+    public boolean kidsArea(String id)
     {
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor c = db.rawQuery("SELECT kidsArea FROM branch WHERE id = "+id,null);
@@ -413,7 +411,7 @@ public class dbHelper extends SQLiteOpenHelper {
             return false;
     }
 
-    public boolean delivery(int id)
+    public boolean delivery(String id)
     {
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor c = db.rawQuery("SELECT delivery FROM branch WHERE id = "+id,null);
