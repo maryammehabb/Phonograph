@@ -373,6 +373,21 @@ public class dbHelper extends SQLiteOpenHelper {
 
     }
 
+    public boolean insertCompliant(String compliant, String bID, String rID, String cID)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("branchID", bID);
+        contentValues.put("resID", rID);
+        contentValues.put("customer_ID", cID);
+        contentValues.put("file", compliant);
+        long result = db.insert("complian",null, contentValues);
+        if (result==-1)
+            return true;
+        else
+            return false;
+
+    }
 
     @Override
     public void onCreate(SQLiteDatabase db) {

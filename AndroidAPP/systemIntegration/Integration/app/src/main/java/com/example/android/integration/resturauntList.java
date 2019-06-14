@@ -81,8 +81,8 @@ public class resturauntList extends AppCompatActivity {
         data2[1] = data1 [1];
         data2[2] = (String) show.getTag();
 
-        Log.i("iiiiiiiiii", (String) show.getTag());
-        Log.i("iiiiiiiiii",data2[2]);
+        //Log.i("iiiiiiiiii", (String) show.getTag());
+        //Log.i("iiiiiiiiii",data2[2]);
         intent.putExtra("info",data2);
         startActivity(intent) ;
     }

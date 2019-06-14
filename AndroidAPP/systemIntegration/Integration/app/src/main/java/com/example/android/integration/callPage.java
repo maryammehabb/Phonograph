@@ -242,7 +242,7 @@ public class callPage extends AppCompatActivity implements RecognitionListener {
             //Log.d(TAG, "hayy");
             //timeMade = details.get();
             dbHelper db = new dbHelper(getApplicationContext());
-            db.updateReservation(reserve, ID);
+            db.updateReservation(reserve,String.valueOf(reserve.getID()) );
         }
         if (intent.equals("\"delete reservation\""))
         {
