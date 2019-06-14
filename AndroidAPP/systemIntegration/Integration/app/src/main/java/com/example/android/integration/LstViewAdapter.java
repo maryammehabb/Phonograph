@@ -15,22 +15,23 @@ import com.example.android.Integration.R;
 
 import java.util.ArrayList;
 
-public class LstViewAdapter extends ArrayAdapter<String> {
+public class LstViewAdapter extends ArrayAdapter<Restaurant> {
     int groupid;
-    String[] item_list;
+    Restaurant[] item_list;
     ArrayList<String> desc;
     Context context;
-    public LstViewAdapter(Context context, int vg, int id, ArrayList<String> item_list){
+    public LstViewAdapter(Context context, int vg, int id, ArrayList<Restaurant> item_list){
         super(context,vg, id, item_list);
         this.context=context;
         groupid=vg;
-        this.item_list= item_list.toArray(new String[0]);
+        this.item_list= item_list.toArray(new Restaurant[0]);
 
     }
     // Hold views of the ListView to improve its scrolling performance
     static class ViewHolder {
         public TextView textview;
         public Button button;
+        public  Button show_button;
 
     }
 
@@ -45,18 +46,21 @@ public class LstViewAdapter extends ArrayAdapter<String> {
             ViewHolder viewHolder = new ViewHolder();
             viewHolder.textview= (TextView) rowView.findViewById(R.id.txt);
             viewHolder.button= (Button) rowView.findViewById(R.id.bt);
+           viewHolder.show_button=(Button) rowView.findViewById(R.id.Show);
             rowView.setTag(viewHolder);
-            if(viewHolder.textview==null){
-            }
+            if(viewHolder.textview==null)
+            {}
 
         }
 
         // Set text to each TextView of ListView item
         ViewHolder holder = (ViewHolder) rowView.getTag();
 
-        holder.textview.setText(item_list[position]);
+        holder.textview.setText(item_list[position].name);
         holder.button.setText("Call");
-        holder.button.setTag(item_list[position]);
+        holder.show_button.setText("Show");
+        holder.button.setTag(item_list[position].id);
+        holder.show_button.setTag(item_list[position].id);
         return rowView;
     }
 

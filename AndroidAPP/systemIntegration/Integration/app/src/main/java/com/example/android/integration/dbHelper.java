@@ -231,8 +231,8 @@ public class dbHelper extends SQLiteOpenHelper {
         return n;
     }
 
-    public List<String> getAllRestraunts(){
-        List<String> temp = new ArrayList<String>();
+    public List<Restaurant> getAllRestraunts(){
+        List<Restaurant> temp = new ArrayList<Restaurant>();
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor c;
         try {
@@ -240,8 +240,8 @@ public class dbHelper extends SQLiteOpenHelper {
             if(c==null) return null;
             c.moveToFirst();
             do{
-                String restaurant = c.getString(1);
-                temp.add(restaurant);
+                Restaurant r = new Restaurant(c.getString(0),c.getString(1),c.getString(2),c.getString(3),c.getString(4));
+                temp.add(r);
             }
             while (c.moveToNext());{
                 c.close();
@@ -251,6 +251,52 @@ public class dbHelper extends SQLiteOpenHelper {
         catch (Exception ex){}
         return temp;
     }
+    public Restaurant get_one_restaurant(String id)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor c;
+        c = db.rawQuery("SELECT * FROM restaurant WHERE ID ="+id,null );
+        Cursor c1;
+        ArrayList<item> menu = new ArrayList<item>();
+        c1 = db.rawQuery("SELECT * FROM Item WHERE resID = "+id,null);
+        if(c1!=null){
+            c1.moveToFirst();
+            do {
+            item i;
+            item menu_item = new item(c1.getString(0),c1.getString(1),c1.getString(2),c1.getFloat(3));
+            menu.add(menu_item);
+            }
+            while (c1.moveToNext());
+            c1.close();
+        }
+        c1 = db.rawQuery("SELECT Address FROM branch WHERE resID = "+id,null);
+        String Locations="";
+        Log.i("eeeeee", String.valueOf(c1.getColumnCount()));
+        if(c1 != null) {
+            c1.moveToFirst();
+            do {
+                Locations += c1.getString(0) + " , ";
+            }
+            while (c1.moveToNext());
+        }
+        if(Locations.length()>0)
+            Locations=Locations.substring(0,Locations.length()-2);
+        Log.i("ooooo",Locations);
+        if(c==null)
+        {
+            return null;
+        }
+
+        if (c.isAfterLast())
+        {
+            db.close();
+        }
+        c.moveToFirst();
+        Restaurant r= new Restaurant( c.getString(0),c.getString(1),c.getString(2),c.getColumnName(3),Locations,menu);
+        c.close();
+        return r;
+    }
+
 
     @Override
     public void onCreate(SQLiteDatabase db) {
