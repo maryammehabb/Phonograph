@@ -9,9 +9,6 @@ from sqlalchemy.orm import sessionmaker
 
 Base = declarative_base()
 
-# Tables
-
-
 
 class Restaurant(Base):
     __tablename__ = 'restaurant'
@@ -20,7 +17,7 @@ class Restaurant(Base):
     # To Be changed later to the proper column type for the next 3 columns
     timeStart = Column(String())
     timeEnd = Column(String())
-    locations = Column(String(1000))
+    kidsMenue= Column(Boolean(250), nullable=False)
     # relations
     branches = relationship('Branch', back_populates="restaurant")
     items = relationship('Item', back_populates="restaurant")
@@ -35,6 +32,9 @@ class Branch(Base):
     numOfTables = Column(Integer)
     delivery = Column(Boolean(250), nullable=False)
     resID = Column(Integer, ForeignKey('restaurant.id'))
+    kidsArea= Column(Boolean(250), nullable=False)
+    smokingArea= Column(Boolean(250), nullable=False)
+
     # relations
     restaurant = relationship('Restaurant', back_populates='branches')
     tables = relationship('table', back_populates='branch')
@@ -56,7 +56,7 @@ class Complaint(Base):
     branchID = Column(Integer, ForeignKey('branch.id'))
     resID = Column(Integer, ForeignKey('restaurant.id'))
     file = Column(TEXT)
-    customer_ID = Column(Integer, ForeignKey('customer.id'))
+    customer_ID = Column(Integer, ForeignKey('Customer.id'))
     # relations
     restaurant = relationship('Restaurant', back_populates="complains")
 
@@ -68,6 +68,7 @@ class Item(Base):
     name = Column(String)
     price = Column(Float)
     orderID = Column(Integer, ForeignKey('Order.id'), nullable=True)
+    kids= Column(Boolean(250), nullable=False)
     # relations
     restaurant = relationship('Restaurant', back_populates="items")
     order = relationship('Order', back_populates="content")

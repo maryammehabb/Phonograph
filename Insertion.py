@@ -8,14 +8,14 @@ DBSession = sessionmaker(bind=engine)
 session = DBSession()
 
 
-def add_restaurant(id, name, ts, te, locations):
-    restaurant = Restaurant(id=id, name=name, timeStart=ts, timeEnd=te, locations=locations)
+def add_restaurant(id, name, ts, te,km):
+    restaurant = Restaurant(id=id, name=name, timeStart=ts, timeEnd=te,kidsMenue=km)
     session.add(restaurant)
     session.commit()
 
 
-def add_branch(id, address, numOFTables, delivery, resID,):
-    branch = Branch(id=id, numOFTables=numOFTables, delivery=delivery, resID=resID, address=address)
+def add_branch(id, address, numOFTables, delivery, resID,km , sm):
+    branch = Branch(id=id, numOFTables=numOFTables, delivery=delivery, resID=resID, address=address, kidsArea=ka, smokingArea=sm)
     session.add(branch)
     session.commit()
 
