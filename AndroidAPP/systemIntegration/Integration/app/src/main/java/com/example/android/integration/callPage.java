@@ -262,6 +262,12 @@ public class callPage extends AppCompatActivity implements RecognitionListener {
         String text = "";
         BufferedReader reader = null;
 
+        if(intentt.equals("\"Complains\"")){
+            Toast.makeText(getBaseContext(), "Call has ended", Toast.LENGTH_SHORT).show();
+            complain = query;
+            return "";
+        }
+
         // Send data
 
 
@@ -387,6 +393,7 @@ public class callPage extends AppCompatActivity implements RecognitionListener {
                             .getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
                     Log.i("lllll",result.get(0));
                     txtSpeechInput.setText(result.get(0));
+                    complain = result.get(0);
                 }
                 break;
             }
@@ -453,7 +460,7 @@ public class callPage extends AppCompatActivity implements RecognitionListener {
         txtSpeechInput.setText(matches.get(0));
         new RetrieveFeedTask().execute(txtSpeechInput.getText().toString());
         Log.i("LLLLL",matches.get(0));
-
+        complain = matches.get(0);
 
 
     }
@@ -473,11 +480,10 @@ public class callPage extends AppCompatActivity implements RecognitionListener {
 
         @Override
         protected String doInBackground(String... voids) {
+            Log.i("HIIII" , intentt);
             String s = "Thank you.";
-            Log.d("Naghamfen", intentt);
-            if (intent.equals("\"Complains\"")) {
+            if (intentt.equals("\"Complains\"")) {
                 Log.d("nagham", intentt);
-                return s;
             } else {
 
 
@@ -491,9 +497,9 @@ public class callPage extends AppCompatActivity implements RecognitionListener {
                     e.printStackTrace();
                 }
 
-
-                return s;
             }
+                return s;
+
         }
 
 
@@ -522,6 +528,7 @@ public class callPage extends AppCompatActivity implements RecognitionListener {
             if (intentt.equals("\"End of call\"")) {
                 Toast.makeText(getBaseContext(), "Call has ended", Toast.LENGTH_SHORT).show();
                 mSpeechRecognizer.cancel();
+
             } else {
                 mute();
                 mSpeechRecognizer.startListening(intent);
