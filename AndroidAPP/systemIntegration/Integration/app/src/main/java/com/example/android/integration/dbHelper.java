@@ -271,7 +271,6 @@ public class dbHelper extends SQLiteOpenHelper {
         }
         c1 = db.rawQuery("SELECT Address FROM branch WHERE resID = "+id,null);
         String Locations="";
-        Log.i("eeeeee", String.valueOf(c1.getColumnCount()));
         if(c1 != null) {
             c1.moveToFirst();
             do {
