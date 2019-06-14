@@ -373,6 +373,56 @@ public class dbHelper extends SQLiteOpenHelper {
 
     }
 
+    public boolean smokingArea(int id)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor c = db.rawQuery("SELECT smokingArea FROM branch WHERE id = "+id,null);
+        if (c.equals("yes"))
+            return true;
+        else
+            return false;
+    }
+
+    public List<item> getMenu(String id){
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor c;
+        ArrayList<item> menu = new ArrayList<item>();
+        c = db.rawQuery("SELECT * FROM Item WHERE resID = "+id,null);
+        if(c!=null){
+            c.moveToFirst();
+            do {
+                item i;
+                item menu_item = new item(c.getString(0),c.getString(1),c.getString(2),c.getFloat(3));
+                menu.add(menu_item);
+            }
+            while (c.moveToNext());
+            c.close();
+        }
+        return menu;
+
+    }
+
+
+    public boolean kidsArea(int id)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor c = db.rawQuery("SELECT kidsArea FROM branch WHERE id = "+id,null);
+        if (c.equals("yes"))
+            return true;
+        else
+            return false;
+    }
+
+    public boolean delivery(int id)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor c = db.rawQuery("SELECT delivery FROM branch WHERE id = "+id,null);
+        if (c.equals("yes"))
+            return true;
+        else
+            return false;
+    }
+
 
     @Override
     public void onCreate(SQLiteDatabase db) {
