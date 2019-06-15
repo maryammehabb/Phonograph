@@ -66,7 +66,6 @@
                     </li>
                    <!-- Marwa  - Edit option for admin -->
                     <li>
-                    <!--  <a href="#com" class="waves-effect"><i class="fa fa-globe fa-fw" aria-hidden="true"></i><span class="hide-menu">Edit Information</span></a> -->
                     <select id="formSel">
                     <option value="-">Select an edit</option>
                     <option value="1">Restaurant</option>
@@ -74,6 +73,7 @@
                     <option value="3">Branches</option>
                     <option value="4">Order</option> 
                     <option value="5">Reservation</option>
+                    <option value="6">Table</option>
                     </select>
 
                     <div id="myModal" class="modal fade">
@@ -84,11 +84,182 @@
                     <h4 class="modal-title">Modal title</h4>
                     </div>
                     <div class="modal-body">
-                    <form id="form1" style="z-index: -1000;" ><input type="text" value="form 1"/></form>
-                    <form id="form2"><input type="text" value="form 2" /></form>
-                    <form id="form3"><input type="text" value="form 3" /></form>
-                    <form id="form4"><input type="text" value="form 4" /></form>
-                    <form id="form5"><input type="text" value="form 5" /></form>
+
+                    <!-- Restaurant Information Edit -->
+                    <form id="form1" >
+                    <table class="table table-hover table-dark">
+                    <thead>
+                    <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Time Start</th>
+                    <th scope="col">Time End</th>
+                    <th scope="col">Kids Menu</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                    <!-- Select all from db - backend -->
+                    <td><input style="width: 95px;" type="text" name="restaurantname" value="nour"></td>
+                    <td><input style="width: 95px;" type="time" name="timestart" value="9 am"></td>
+                    <td><input style="width: 95px;" type="text" name="timeend" value="11 pm"></td>
+                    <td><input style="width: 95px;" type="text" name="kidsmenu" value="no"></td>
+                    <td><input type="submit" name="edit" value="Edit"></td>
+                    <td><input type="submit" name="delete" value="Delete"></td>
+                    <!-- add button add that shows empty row i will fill and click add to add to db -->
+                    </tr>
+                    </tbody>
+                    </table>
+                    </form>
+
+                    <!--Menu Edit -->
+                    <form id="form2">
+                    <table class="table table-hover table-dark">
+                    <thead>
+                    <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Kids Menu</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                    <!-- Select all from db - backend -->
+                    <th scope="row">1</th>
+                    <td><input style="width: 95px;" type="text" name="name" value="Burger"></td>
+                    <td><input style="width: 95px;" type="text" name="price" value="11"></td>
+                    <td><input style="width: 95px;" type="text" name="kidsmenu" value="no"></td>
+                    <td><input type="submit" name="edit" value="Edit"></td>
+                    <td><input type="submit" name="delete" value="Delete"></td>
+                    <!-- add button add that shows empty row i will fill and click add to add to db -->
+                    </tr>
+                    </tbody>
+                    </table>
+                    </form>
+
+                    <!--Branches Edit -->
+                    <form id="form3">
+                    <table class="table table-hover table-dark"  style="width: 600px;">
+                    <thead>
+                    <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Address</th>
+                    <th scope="col"># of Table</th>
+                    <th scope="col">Delivery</th>
+                    <th scope="col">Kids Area</th>
+                    <th scope="col">Smoking Area</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                    <!-- Select all from db - backend -->
+                    <th scope="row">1</th>
+                    <td><input style="width: 95px;" type="text" name="address" value="Haram"></td>
+                    <td><input style="width: 95px;" type="text" name="tables" value="11"></td>
+                    <td><input style="width: 95px;" type="text" name="delivery" value="yes"></td>
+                    <td><input style="width: 95px;" type="text" name="kids area" value="no"></td>
+                    <td><input style="width: 95px;" type="text" name="smoking area" value="no"></td>
+                    <td><input type="submit" name="edit" value="Edit"></td>
+                    <td><input type="submit" name="delete" value="Delete"></td>
+                    <!-- add button add that shows empty row i will fill and click add to add to db -->
+                    </tr>
+                    </tbody>
+                    </table>
+                    </form>
+
+                    <!--Order Edit -->
+                    <form id="form4">
+                    <table class="table table-hover table-dark">
+                    <thead>
+                    <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Meals Number</th>
+                    <th scope="col">Meals Name</th>
+                    <th scope="col">Time</th>
+                    <th scope="col">Delivery</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Delivered</th>
+                    <th scope="col">User ID</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                    <!-- Select all from db - backend -->
+                    <th scope="row">1</th>
+                    <td><input style="width: 95px;" type="text" name="id" value="10"></td>
+                    <td><input style="width: 95px;" type="text" name="meals_number" value="10"></td>
+                    <td><input style="width: 95px;" type="text" name="meals_name" value="pizza"></td>
+                    <td><input style="width: 95px;" type="text" name="time" value="10"></td>
+                    <td><input style="width: 95px;" type="text" name="delivery" value="no"></td>
+                    <td><input style="width: 95px;" type="text" name="price" value="10"></td>
+                    <td><input style="width: 95px;" type="text" name="delivered" value="no"></td>
+                    <td><input style="width: 95px;" type="text" name="user_id" value="1"></td>
+                    <td><input type="submit" name="edit" value="Edit"></td>
+                    <td><input type="submit" name="delete" value="Delete"></td>
+                    <!-- add button add that shows empty row i will fill and click add to add to db -->
+                    </tr>
+                    </tbody>
+                    </table>
+                    </form>
+
+                    <!--Reservation Edit -->
+                    <form id="form5">
+                    <table class="table table-hover table-dark">
+                    <thead>
+                    <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col"># of People</th>
+                    <th scope="col">Branch ID</th>
+                    <th scope="col">Table ID</th>
+                    <th scope="col">Time Reserved</th>
+                    <th scope="col">Time Made</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                    <!-- Select all from db - backend -->
+                    <th scope="row">1</th>
+                    <td><input style="width: 95px;" type="text" name="id" value="10"></td>
+                    <td><input style="width: 95px;" type="text" name="people_number" value="10"></td>
+                    <td><input style="width: 95px;" type="text" name="branch_id" value="11"></td>
+                    <td><input style="width: 95px;" type="text" name="table_id" value="10"></td>
+                    <td><input style="width: 95px;" type="text" name="time_reserved" value="10"></td>
+                    <td><input style="width: 95px;" type="text" name="time_made" value="9"></td>
+                    <td><input type="submit" name="edit" value="Edit"></td>
+                    <td><input type="submit" name="delete" value="Delete"></td>
+                    <!-- add button add that shows empty row i will fill and click add to add to db -->
+                    </tr>
+                    </tbody>
+                    </table>
+                    </form>
+
+                    <!--Table Edit -->
+                    <form id="form6">
+                    <table class="table table-hover table-dark">
+                    <thead>
+                    <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Branch ID</th>
+                    <th scope="col"># of seats</th>
+                    <th scope="col">Reserved</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                    <!-- Select all from db - backend -->
+                    <th scope="row">1</th>
+                    <td><input style="width: 95px;" type="text" name="id" value="10"></td>
+                    <td><input style="width: 95px;" type="text" name="branch_id" value="10"></td>
+                    <td><input style="width: 95px;" type="text" name="number_of_seats" value="10"></td>
+                    <td><input style="width: 95px;" type="text" name="reserved" value="yes"></td>
+                    <td><input type="submit" name="edit" value="Edit"></td>
+                    <td><input type="submit" name="delete" value="Delete"></td>
+                    <!-- add button add that shows empty row i will fill and click add to add to db -->
+                    </tr>
+                    </tbody>
+                    </table>
+                    </form>
+
                     </div>
                     </div><!-- /.modal-content -->
                     </div><!-- /.modal-dialog -->
