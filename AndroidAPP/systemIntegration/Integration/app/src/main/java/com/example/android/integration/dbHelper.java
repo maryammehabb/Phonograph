@@ -373,6 +373,54 @@ public class dbHelper extends SQLiteOpenHelper {
 
     }
 
+    public boolean smokingArea(String id)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor c = db.rawQuery("SELECT smokingArea FROM branch WHERE id = "+id,null);
+        if (c.equals("yes"))
+            return true;
+        else
+            return false;
+    }
+
+    public List<String> getMenu(String id){
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor c;
+        ArrayList<String> menu = new ArrayList<String>();
+        c = db.rawQuery("SELECT name, price FROM Item WHERE resID = "+id,null);
+        if(c!=null){
+            c.moveToFirst();
+            do {
+                menu.add(Integer.parseInt(c.getString(0)), c.getString(1));
+            }
+            while (c.moveToNext());
+            c.close();
+        }
+        return menu;
+
+    }
+
+
+    public boolean kidsArea(String id)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor c = db.rawQuery("SELECT kidsArea FROM branch WHERE id = "+id,null);
+        if (c.equals("yes"))
+            return true;
+        else
+            return false;
+    }
+
+    public boolean delivery(String id)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor c = db.rawQuery("SELECT delivery FROM branch WHERE id = "+id,null);
+        if (c.equals("yes"))
+            return true;
+        else
+            return false;
+    }
+
     public boolean insertCompliant(String compliant, String bID, String rID, String cID)
     {
         SQLiteDatabase db = this.getWritableDatabase();
