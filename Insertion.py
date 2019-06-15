@@ -1,4 +1,4 @@
-from Model import Base, Reservation, Restaurant, User, Customer, Branch, Table, Complaint, Item, Admin, Order
+from Model import Base, Reservation, Restaurant, User, Branch, Table, Complaint, Item, Admin, Order
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
@@ -8,66 +8,60 @@ DBSession = sessionmaker(bind=engine)
 session = DBSession()
 
 
-def add_restaurant(id, name, ts, te,km):
-    restaurant = Restaurant(id=id, name=name, timeStart=ts, timeEnd=te,kidsMenue=km)
+def add_restaurant( name, ts, te,km):
+    restaurant = Restaurant( name=name, timeStart=ts, timeEnd=te,kidsMenue=km)
     session.add(restaurant)
     session.commit()
 
 
-def add_branch(id, address, numOFTables, delivery, resID,km , sm):
-    branch = Branch(id=id, numOFTables=numOFTables, delivery=delivery, resID=resID, address=address, kidsArea=ka, smokingArea=sm)
+def add_branch( address, numOFTables, delivery, resID,ka , sm):
+    branch = Branch( numOFTables=numOFTables, delivery=delivery, resID=resID, address=address, kidsArea=ka, smokingArea=sm)
     session.add(branch)
     session.commit()
 
 
-def add_table(id, branchID, numOfSeats, reserved, branch):
-    table = Table(id=id, branchID=branchID, numOfSeats=numOfSeats, reserved=reserved)
+def add_table( branchID, numOfSeats, reserved):
+    table = Table( branchID=branchID, numOfSeats=numOfSeats, reserved=reserved)
     session.add(table)
     session.commit()
 
 
-def add_compliant(id, branchID, resID, file, cusID):
-    compliant = Complaint(id=id, branchID=branchID, resID=resID, file=file, cusID=cusID)
+def add_compliant( branchID, resID, file, uID):
+    compliant = Complaint(branchID=branchID, resID=resID, file=file, user_ID=uID)
     session.add(compliant)
     session.commit()
 
 
-def add_item(Id, resID, name, price, orderID,kids):
-    item = Item(id=Id, resID=resID, name=name, price=price, orderID=orderID,kids=kids)
+def add_item(resID, name, price, orderID,kids):
+    item = Item( resID=resID, name=name, price=price, orderID=orderID,kids=kids)
     session.add(item)
     session.commit()
 
 
-def add_user(id, mail, password, discriminator):
-    user = User(id=id, mail=mail, password=password, discriminator=discriminator)
+def add_user( mail, password, name,phone, address):
+    user = User( mail=mail, password=password, name=name,phone=phone,address=address)
     session.add(user)
     session.commit()
 
 
-def add_customer(id, name, phone, address):
-    customer = Customer(id=id, name=name, phone=phone, address=address)
-    session.add(customer)
-    session.commit()
-
-
-def add_admin(id, resId):
-    admin = Admin(id=id, resID=resId)
+def add_admin(mail,password,resId):
+    admin = Admin( resID=resId,password=password,mail=mail)
     session.add(admin)
     session.commit()
 
 
-def add_reservation(id, cusID, numofPeople, branchID, tableID, resID, tr, tm):
-    reservation = Reservation(id=id, cusID=cusID, numofPeople=numofPeople, branchID=branchID, tableID=tableID,
+def add_reservation(userID, numofPeople, branchID, tableID, resID, tr, tm):
+    reservation = Reservation(id=id, userID=userID, numofPeople=numofPeople, branchID=branchID, tableID=tableID,
                               resID=resID, timeReserved=tr, timeMade=tm)
     session.add(reservation)
     session.commit()
 
 
-def add_order(id, time, delivery, price, resID, timeD, done, cusID, content,Items, numOfOrders):
-    order = Order(id=id, time=time, delivery=delivery, price=price, resID=resID, timeDelivered=timeD, done=done,
-                  cusID=cusID, content=content, items=Items, numOfOrders=numOfOrders)
+def add_order(time, delivery, price, resID, timeD, done, userID, content,Items, numOfOrders):
+    order = Order(time=time, delivery=delivery, price=price, resID=resID, timeDelivered=timeD, done=done,
+                  userID=userID, content=content, items=Items, numOfOrders=numOfOrders)
     session.add(order)
     session.commit()
 
 
-#add_restaurant(3,"DSsrf","dfcfdsf", 'fdfe',"frefef")
+add_admin("fsfsf","sfwfre",3)
