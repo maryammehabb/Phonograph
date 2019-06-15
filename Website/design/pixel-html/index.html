@@ -64,9 +64,36 @@
                     <li>
                         <a href="#com" class="waves-effect"><i class="fa fa-globe fa-fw" aria-hidden="true"></i><span class="hide-menu">Complains</span></a>
                     </li>
+                   <!-- Marwa  - Edit option for admin -->
                     <li>
-                        <a href="#com" class="waves-effect"><i class="fa fa-globe fa-fw" aria-hidden="true"></i><span class="hide-menu">Edit Information</span></a>
+                    <select id="formSel">
+                    <option value="-">Select an edit</option>
+                    <option value="1">Restaurant</option>
+                    <option value="2">Menu</option>
+                    <option value="3">Branches</option>
+                    <option value="4">Order</option> 
+                    <option value="5">Reservation</option>
+                    </select>
+
+                    <div id="myModal" class="modal fade">
+                    <div class="modal-dialog">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Modal title</h4>
+                    </div>
+                    <div class="modal-body">
+                    <form id="form1" style="z-index: -1000;" ><input type="text" value="form 1"/></form>
+                    <form id="form2"><input type="text" value="form 2" /></form>
+                    <form id="form3"><input type="text" value="form 3" /></form>
+                    <form id="form4"><input type="text" value="form 4" /></form>
+                    <form id="form5"><input type="text" value="form 5" /></form>
+                    </div>
+                    </div><!-- /.modal-content -->
+                    </div><!-- /.modal-dialog -->
+                    </div><!-- /.modal -->
                     </li>
+                    <!-- End Edit Option-->
                     <li>
                         <a href="#com" class="waves-effect"><i class="fa fa-globe fa-fw" aria-hidden="true"></i><span class="hide-menu">LogOUT</span></a>
                     </li>
@@ -296,6 +323,8 @@
     <script src="js/custom.min.js"></script>
     <script src="js/dashboard1.js"></script>
     <script src="../plugins/bower_components/toast-master/js/jquery.toast.js"></script>
+    <!-- Script Marwa -->
+    <script src="js/formscript.js"></script>
 </body>
 
 </html>
