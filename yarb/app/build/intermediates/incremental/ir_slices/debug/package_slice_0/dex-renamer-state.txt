@@ -1,4 +1,0 @@
-#Sun Jun 09 21:02:45 EET 2019
-base.0=F\:\\Material\\yarb\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\0
-path.0=classes.dex
-renamed.0=classes.dex
