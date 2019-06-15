@@ -64,4 +64,11 @@ def add_order(time, delivery, price, resID, timeD, done, userID, content,Items, 
     session.commit()
 
 
-add_admin("fsfsf","sfwfre",3)
+'''add_user("nour@gmail.com","nour","nour","1234","12 blablabla st")
+add_user("mariamE@gmail.com","mariamE","mariam","123","13 blablabla st")
+add_user("mariamA@gmail.com","mariamA","mariam","12","14 blablabla st")
+add_user("nagham@gmail.com","nagham","nagham","1234","15 blablabla st")
+add_user("marwa@gmail.com","marwa","marwa","12345","16 blablabla st")
+'''
+#add_restaurant("nour","8 am","12 am",True)
+#add_admin("admin@gmail.com","admin",1)

@@ -1,4 +1,4 @@
-from Model import Base, Reservation, Restaurant, User, Customer, Branch, Table, Complaint, Item, Admin, Order
+from Model import Base, Reservation, Restaurant, User, Branch, Table, Complaint, Item, Admin, Order
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
@@ -8,53 +8,67 @@ DBSession = sessionmaker(bind=engine)
 session = DBSession()
 
 
-def delete_reservation(reservation):
-    session.delete(reservation)
-    session.commit()
+def delete_reservation(id):
+    reservation = session.query(Reservation).filter(Reservation.id == id).first()
+    if reservation != None:
+        session.delete(reservation)
+        session.commit()
 
 
-def delete_restaurant(restaurant):
-    session.delete(restaurant)
-    session.commit()
+def delete_restaurant(id):
+   restaurant = session.query(Restaurant).filter(Restaurant.id == id).first()
+   if restaurant!= None:
+        session.delete(restaurant)
+        session.commit()
 
 
-def delete_user(user):
-    session.delete(user)
-    session.commit()
+def delete_user(id):
+   user = session.query(User).filter(User.id == id).first()
+   if user != None:
+        session.delete(user)
+        session.commit()
 
 
-def delete_customer(customer):
-    session.delete(customer)
-    session.commit()
+def delete_branch(id):
+    branch = session.query(Branch).filter(Branch.id == id).first()
+    if branch != None:
+        session.delete(branch)
+        session.commit()
+
+def delete_admin(id):
+    admin = session.query(Admin).filter(Admin.id == id).first()
+    if admin != None:
+        session.delete(admin)
+        session.commit()
 
 
-def delete_branch(branch):
-    session.delete(branch)
-    session.commit()
+def delete_table(id):
+    table = session.query(Table).filter(Table.id == id).first()
+    if table!= None:
+        session.delete(table)
+        session.commit()
 
 
-def delete_admin(admin):
-    session.delete(admin)
-    session.commit()
+def delete_item(id):
+   item = session.query(Item).filter(Item.id == id).first()
+   if item!= None:
+        session.delete(item)
+        session.commit()
 
 
-def delete_table(table):
-    session.delete(table)
-    session.commit()
+def delete_complaint(id):
+   complaint= session.query(Complaint).filter(Complaint.id == id).first()
+   if complaint!= None:
+        session.delete(complaint)
+        session.commit()
 
 
-def delete_item(item):
-    session.delete(item)
-    session.commit()
+def delete_order(id):
+   order = session.query(Order).filter(Order.id == id).first()
+   if order != None:
+        session.delete(order)
+        session.commit()
 
 
-def delete_complaint(complaint):
-    session.delete(complaint)
-    session.commit()
-
-
-def delete_order(order):
-    session.delete(order)
-    session.commit()
-
-
+delete_user(0)
+delete_admin(0)
