@@ -70,5 +70,6 @@ def delete_order(id):
         session.commit()
 
 
-delete_user(0)
-delete_admin(0)
+#delete_user(0)
+#delete_admin(0)
+dele

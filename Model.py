@@ -37,10 +37,10 @@ class Branch(Base):
 
     # relations
     restaurant = relationship('Restaurant', back_populates='branches')
-    tables = relationship('table', back_populates='branch')
+    tables = relationship('Table', back_populates='branch')
 
 
-class table(Base):
+class Table(Base):
     __tablename__ = 'Table'
     id =Column(Integer, primary_key=True, autoincrement=True)
     branchID = Column(Integer, ForeignKey('branch.id'))

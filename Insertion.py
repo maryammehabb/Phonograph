@@ -15,14 +15,14 @@ def add_restaurant( name, ts, te,km):
 
 
 def add_branch( address, numOFTables, delivery, resID,ka , sm):
-    branch = Branch( numOFTables=numOFTables, delivery=delivery, resID=resID, address=address, kidsArea=ka, smokingArea=sm)
+    branch = Branch(numOfTables=numOFTables, delivery=delivery, resID=resID, address=address, kidsArea=ka, smokingArea=sm)
     session.add(branch)
     session.commit()
 
 
 def add_table( branchID, numOfSeats, reserved):
-    table = Table( branchID=branchID, numOfSeats=numOfSeats, reserved=reserved)
-    session.add(table)
+    tabl = Table( branchID=branchID, numOfSeats=numOfSeats, reserved=reserved)
+    session.add(tabl)
     session.commit()
 
 
@@ -51,15 +51,15 @@ def add_admin(mail,password,resId):
 
 
 def add_reservation(userID, numofPeople, branchID, tableID, resID, tr, tm):
-    reservation = Reservation(id=id, userID=userID, numofPeople=numofPeople, branchID=branchID, tableID=tableID,
+    reservation = Reservation(userID=userID, numOfPeople=numofPeople, branchID=branchID, tableID=tableID,
                               resID=resID, timeReserved=tr, timeMade=tm)
     session.add(reservation)
     session.commit()
 
 
-def add_order(time, delivery, price, resID, timeD, done, userID, content,Items, numOfOrders):
+def add_order(time, delivery, price, resID, timeD, done, userID,Items, numOfOrders):
     order = Order(time=time, delivery=delivery, price=price, resID=resID, timeDelivered=timeD, done=done,
-                  userID=userID, content=content, items=Items, numOfOrders=numOfOrders)
+                  userID=userID, items=Items, numOfOrders=numOfOrders)
     session.add(order)
     session.commit()
 
@@ -72,3 +72,10 @@ add_user("marwa@gmail.com","marwa","marwa","12345","16 blablabla st")
 '''
 #add_restaurant("nour","8 am","12 am",True)
 #add_admin("admin@gmail.com","admin",1)
+
+#add_reservation(1,3,1,1,1,"4","8")
+#add_branch("sdfsd",4,True,1,True,False)
+#add_compliant(1,1,"sfsfs",2)
+#add_item(1,"burger",30,1,False)
+#add_order("3",True,40,1,"4",False,2,"sfsfsf",2)
+#add_table(1,5,True)
