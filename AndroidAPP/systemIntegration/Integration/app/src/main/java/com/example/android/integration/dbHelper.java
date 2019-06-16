@@ -240,7 +240,7 @@ public class dbHelper extends SQLiteOpenHelper {
             if(c==null) return null;
             c.moveToFirst();
             do{
-                Restaurant r = new Restaurant(c.getString(0),c.getString(1),c.getString(2),c.getString(3),c.getString(4));
+                Restaurant r = new Restaurant(c.getString(0),c.getString(1),c.getString(2),c.getString(3));
                 temp.add(r);
             }
             while (c.moveToNext());{
@@ -269,18 +269,16 @@ public class dbHelper extends SQLiteOpenHelper {
             while (c1.moveToNext());
             c1.close();
         }
-        c1 = db.rawQuery("SELECT Address FROM branch WHERE resID = "+id,null);
-        String Locations="";
+        ArrayList<Branch> Branches = new ArrayList<>();
+        c1 = db.rawQuery("SELECT Address,id FROM branch WHERE resID = "+id,null);
         if(c1 != null) {
             c1.moveToFirst();
             do {
-                Locations += c1.getString(0) + " , ";
+                Branch b= new Branch(c1.getString(0),c1.getString(1));
+                Branches.add(b);
             }
             while (c1.moveToNext());
         }
-        if(Locations.length()>0)
-            Locations=Locations.substring(0,Locations.length()-2);
-        Log.i("ooooo",Locations);
         if(c==null)
         {
             return null;
@@ -291,11 +289,26 @@ public class dbHelper extends SQLiteOpenHelper {
             db.close();
         }
         c.moveToFirst();
-        Restaurant r= new Restaurant( c.getString(0),c.getString(1),c.getString(2),c.getColumnName(3),Locations,menu);
+        Restaurant r= new Restaurant( c.getString(0),c.getString(1),c.getString(2),c.getColumnName(3),Branches,menu);
         c.close();
         return r;
-    }
-
+    }/*
+    public  ArrayList<String> getbranches(String id)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor c1;
+        ArrayList<String> Branches = new ArrayList<String>();
+        c1 = db.rawQuery("SELECT Address FROM branch WHERE resID = "+id,null);
+        if(c1 != null)
+        {
+            c1.moveToFirst();
+            do  {
+                Branches.add(c1.getString(0));
+            }
+            while (c1.moveToNext());
+        }
+        return Branches;
+    }*/
 
     @Override
     public void onCreate(SQLiteDatabase db) {

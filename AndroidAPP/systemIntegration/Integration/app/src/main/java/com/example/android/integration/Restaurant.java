@@ -7,24 +7,22 @@ public class Restaurant {
     String  id;
     String timeStart;
     String timeEnd;
-    String Locations;
+    ArrayList<Branch> Branches;
     ArrayList<item>menu;
-    public Restaurant(String id,String name,String timeStart,String timeEnd,String Locations)
+    public Restaurant(String id,String name,String timeStart,String timeEnd)
     {
         this.name=name;
         this.id=id;
         this.timeStart=timeStart;
         this.timeEnd=timeEnd;
-        this.Locations=Locations;
-        this.menu=menu;
     }
-    public Restaurant(String id,String name,String timeStart,String timeEnd,String Locations,ArrayList<item>menu)
+    public Restaurant(String id,String name,String timeStart,String timeEnd,ArrayList<Branch> Locations,ArrayList<item>menu)
     {
         this.name=name;
         this.id=id;
         this.timeStart=timeStart;
         this.timeEnd=timeEnd;
-        this.Locations=Locations;
+        this.Branches=Locations;
         this.menu=menu;
     }
 }

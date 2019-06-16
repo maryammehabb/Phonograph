@@ -8,15 +8,19 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Spinner;
 
 import com.example.android.Integration.R;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 public class resturauntList extends AppCompatActivity {
 
@@ -25,7 +29,7 @@ public class resturauntList extends AppCompatActivity {
     private DrawerLayout dl;
     private ActionBarDrawerToggle abdt;
     private NavigationView nav_view;
-
+    private Spinner spinner1, spinner2;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -80,7 +84,7 @@ public class resturauntList extends AppCompatActivity {
         data2[0] = data1 [0];
         data2[1] = data1 [1];
         data2[2] = (String) show.getTag();
-
+     //   addItemsOnSpinner2((String) show.getTag());
         Log.i("iiiiiiiiii", (String) show.getTag());
         Log.i("iiiiiiiiii",data2[2]);
         intent.putExtra("info",data2);
@@ -95,20 +99,6 @@ public class resturauntList extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void clickMe(View view){
-        Button bt = (Button) view ;
-        //setContentView(R.layout.activity_call_page);
-        Intent intent = new Intent(resturauntList.this, callPage.class);
-        data2[0] = data1 [0];
-        data2[1] = data1 [1];
-        data2[2] = (String) bt.getTag();
-
-        intent.putExtra("info",data2);
-        startActivity(intent) ;
-        //TextView t= findViewById(R.id.Restraunt_name);
-        //t.setText((String) bt.getTag());
-        // Toast.makeText(this, "Button "+bt.getText().toString(),Toast.LENGTH_LONG).show();
-    }
 
     public void View_Restraunts() throws SQLException
     {

@@ -30,9 +30,7 @@ public class LstViewAdapter extends ArrayAdapter<Restaurant> {
     // Hold views of the ListView to improve its scrolling performance
     static class ViewHolder {
         public TextView textview;
-        public Button button;
         public  Button show_button;
-
     }
 
     public View getView(int position, View convertView, ViewGroup parent)
@@ -45,7 +43,6 @@ public class LstViewAdapter extends ArrayAdapter<Restaurant> {
             rowView= inflater.inflate(R.layout.restaurantlistviewitems, parent, false);
             ViewHolder viewHolder = new ViewHolder();
             viewHolder.textview= (TextView) rowView.findViewById(R.id.txt);
-            viewHolder.button= (Button) rowView.findViewById(R.id.bt);
            viewHolder.show_button=(Button) rowView.findViewById(R.id.Show);
             rowView.setTag(viewHolder);
             if(viewHolder.textview==null)
@@ -57,9 +54,7 @@ public class LstViewAdapter extends ArrayAdapter<Restaurant> {
         ViewHolder holder = (ViewHolder) rowView.getTag();
 
         holder.textview.setText(item_list[position].name);
-        holder.button.setText("Call");
         holder.show_button.setText("Show");
-        holder.button.setTag(item_list[position].id);
         holder.show_button.setTag(item_list[position].id);
         return rowView;
     }
