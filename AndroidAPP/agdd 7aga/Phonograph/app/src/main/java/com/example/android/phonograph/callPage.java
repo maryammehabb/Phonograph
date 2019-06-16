@@ -214,7 +214,8 @@ public class callPage extends AppCompatActivity implements RecognitionListener {
         return  price;
     }
 
-    public int updateDatabase(String intent){
+    public String updateDatabase(String intent){
+        String s = "";
         int ret = -1;
         if (intentt.equals("\"make order\"")){
             Log.d("NAGHAM", "MAKE ORDER");
@@ -235,30 +236,30 @@ public class callPage extends AppCompatActivity implements RecognitionListener {
                 dbHelper d = new dbHelper(getApplicationContext());
                 //d.createDatabase();
                 ret = d.insertOrder(order);
-                return ret;
+                if (ret == -1) return "We had a problem making you order pleas try again";
+                return "Order was done";
             }
 
-        /*if (intentt.equals("\"delete order\""))
+        if (intentt.equals("\"delete order\""))
         {
-            String meals = details.get(0);
-            int numberOfMeals = Integer.valueOf(details.get(1));
-            Order order = new Order(time, true , 0 , customerID,meals , numberOfMeals, resID );
-            String id =details.get(0);
             dbHelper d=new dbHelper(getApplicationContext());
-            d.deleteOrder(id);
+            s = d.deleteOrder(info[0],info[2]);
+            return s;
 
         }
         if (intentt.equals("\"edit order\""))
         {
-            Order order = new Order(time, true , 0 , Integer.getInteger(info[0]) , "0",0, Integer.getInteger(info[2]) );
-            String id =details.get(0);
-            String newOrder= details.get(1);
-            String numberOfMeals= details.get(2);
+            String meals = details.get(0);
+            float price = 0;
+            price = calcPrice();
+            int numberOfMeals = Integer.valueOf(details.get(1));
+            Order order = new Order(time, true, price, customerID, meals, numberOfMeals, resID);
             dbHelper d=new dbHelper(getApplicationContext());
-            d.updateData(order,id,newOrder,numberOfMeals);
-
+            s = d.updateData(order, info[2], info[0]);
+            return s;
 
         }
+        /*
         //make if condition for each intent
         //if Customer make a reservation
         if(intentt.equals("make reservation")){
@@ -290,9 +291,8 @@ public class callPage extends AppCompatActivity implements RecognitionListener {
             dbHelper db=new dbHelper(getApplicationContext());
             db.deleteReservation(id);
 
-        }
-        return false;*/
-        return ret;
+        }*/
+        return "";
     }
 
 
@@ -385,7 +385,8 @@ public class callPage extends AppCompatActivity implements RecognitionListener {
         fulfillment = object.getJSONObject("fulfillment");
         parameters = object.getJSONObject("parameters");
 
-        if(intentt.equals("\"make order\"") && !parameters.getString(parameters.names().get(0).toString()).equals("[]")){
+        if(intentt.equals("\"make order\"") && !parameters.getString(parameters.names().get(0).toString()).equals("[]") ||
+                intentt.equals("\"edit order\"") && !parameters.getString(parameters.names().get(0).toString()).equals("[]")){
             dbHelper db = new dbHelper(this);
 
             rightMeal= db.checkMeal(parameters.getString(parameters.names().get(0).toString()).substring(2,parameters.getString(parameters.names().get(0).toString()).length()-2), info[2]);
@@ -621,9 +622,8 @@ public class callPage extends AppCompatActivity implements RecognitionListener {
                     hold=4000;
                 }
                 else {
-                    int id = updateDatabase(x);
-                    hold = 2000;
-                    Log.d("after", Integer.toString(id));
+                    s =  updateDatabase(x);
+                    hold = 3000;
                 }
 
             }
@@ -643,6 +643,8 @@ public class callPage extends AppCompatActivity implements RecognitionListener {
                 }
             }
             if (intentt.equals("\"End of call\"")) {
+                unmute();
+                toSpeech.speak("bye.", TextToSpeech.QUEUE_FLUSH, null);
                 Toast.makeText(getBaseContext(), "Call has ended", Toast.LENGTH_SHORT).show();
                 mSpeechRecognizer.cancel();
 
