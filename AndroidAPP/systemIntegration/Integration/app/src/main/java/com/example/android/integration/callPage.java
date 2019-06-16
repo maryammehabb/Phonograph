@@ -179,9 +179,77 @@ public class callPage extends AppCompatActivity implements RecognitionListener {
 
     }
 
+    int cusID;
+    int noOfPeople;
+    int tableID;
+    String timeReserved;
+    String timeMade;
+    String o = "Hi";
+    String time;
+
 
     public boolean updateDatabase(String intent){
-        if (intent.equals("\"make order\"")){
+        if (intentt.equals("\"make order\"")){
+            Order order = new Order(time, true , 0 , 1 , "0",0 );
+            String meals = details.get(0);
+            int numberOfMeals = Integer.valueOf(details.get(1));
+            //leave cusId & resturaunt_id to the integration (we get it from prev page)
+            //make function in dbHelper to access items table and calc price
+            //make a function in dbHelper insertOrde
+            order.setMeals(meals);
+            order.setNumberOfMeals(numberOfMeals);
+            dbHelper d= new dbHelper(getApplicationContext());
+            d.insertOrder(order);
+        }
+        if (intent.equals("\"delete order\""))
+        {
+            Order order = new Order(time, true , 0 , 1 , "0",0 );
+            String id =details.get(0);
+            dbHelper d=new dbHelper(getApplicationContext());
+            d.deleteOrder(id);
+
+        }
+        if (intent.equals("\"edit order\""))
+        {
+            Order order = new Order(time, true , 0 , 1 , "0",0 );
+            String id =details.get(0);
+            String newOrder= details.get(1);
+            String numberOfMeals= details.get(2);
+            dbHelper d=new dbHelper(getApplicationContext());
+            d.updateData(order,id,newOrder,numberOfMeals);
+
+
+        }
+        //make if condition for each intent
+        //if Customer make a reservation
+        if(intentt.equals("make reservation")){
+            Reservation reserve = new Reservation(cusID, noOfPeople, tableID, timeReserved, timeMade);
+            //cusID = details.get();
+            noOfPeople = Integer.parseInt(details.get(0));
+            //tableID = details.get();
+            timeReserved = details.get(1);
+            //Log.d(TAG, "hayy");
+            //timeMade = details.get();
+            dbHelper db = new dbHelper(getApplicationContext());
+            db.reserve(reserve);
+        }
+        if (intentt.equals("\"edit reservation\"")){
+            Reservation reserve = new Reservation(cusID, noOfPeople, tableID, timeReserved, timeMade);
+            //cusID = details.get();
+            noOfPeople = Integer.parseInt(details.get(0));
+            //tableID = details.get();
+            timeReserved = details.get(1);
+            //Log.d(TAG, "hayy");
+            //timeMade = details.get();
+            dbHelper db = new dbHelper(getApplicationContext());
+            db.updateReservation(reserve,String.valueOf(reserve.getID()) );
+        }
+        if (intent.equals("\"delete reservation\""))
+        {
+            Reservation reservation = new Reservation(cusID, noOfPeople, tableID, timeReserved, timeMade);
+            String id =details.get(0);
+            dbHelper db=new dbHelper(getApplicationContext());
+            db.deleteReservation(id);
 
         }
         return false;
@@ -193,6 +261,12 @@ public class callPage extends AppCompatActivity implements RecognitionListener {
 
         String text = "";
         BufferedReader reader = null;
+
+        if(intentt.equals("\"Complains\"")){
+            Toast.makeText(getBaseContext(), "Call has ended", Toast.LENGTH_SHORT).show();
+            complain = query;
+            return "";
+        }
 
         // Send data
 
@@ -319,6 +393,7 @@ public class callPage extends AppCompatActivity implements RecognitionListener {
                             .getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
                     Log.i("lllll",result.get(0));
                     txtSpeechInput.setText(result.get(0));
+                    complain = result.get(0);
                 }
                 break;
             }
@@ -385,7 +460,7 @@ public class callPage extends AppCompatActivity implements RecognitionListener {
         txtSpeechInput.setText(matches.get(0));
         new RetrieveFeedTask().execute(txtSpeechInput.getText().toString());
         Log.i("LLLLL",matches.get(0));
-
+        complain = matches.get(0);
 
 
     }
@@ -405,11 +480,10 @@ public class callPage extends AppCompatActivity implements RecognitionListener {
 
         @Override
         protected String doInBackground(String... voids) {
+            Log.i("HIIII" , intentt);
             String s = "Thank you.";
-            Log.d("Naghamfen", intentt);
-            if (intent.equals("\"Complains\"")) {
+            if (intentt.equals("\"Complains\"")) {
                 Log.d("nagham", intentt);
-                return s;
             } else {
 
 
@@ -423,9 +497,9 @@ public class callPage extends AppCompatActivity implements RecognitionListener {
                     e.printStackTrace();
                 }
 
-
-                return s;
             }
+                return s;
+
         }
 
 
@@ -454,6 +528,7 @@ public class callPage extends AppCompatActivity implements RecognitionListener {
             if (intentt.equals("\"End of call\"")) {
                 Toast.makeText(getBaseContext(), "Call has ended", Toast.LENGTH_SHORT).show();
                 mSpeechRecognizer.cancel();
+
             } else {
                 mute();
                 mSpeechRecognizer.startListening(intent);

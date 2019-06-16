@@ -309,6 +309,148 @@ public class dbHelper extends SQLiteOpenHelper {
         }
         return Branches;
     }*/
+    }
+
+    public boolean insertOrder(Order order)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("time", order.getTime());
+        contentValues.put("delivery", order.isDelivery());
+        contentValues.put("price", order.getPrice());
+        contentValues.put("restaurant_id",order.getRestaurant_id());
+        contentValues.put("time_delivered",order.getTime_delivered());
+        contentValues.put("done", order.isDone());
+        contentValues.put("cusId", order.getCusId());
+        contentValues.put("meals", order.getMeals());
+        contentValues.put("numberOfMeals", order.getNumberOfMeals());
+        long result = db.insert("Order",null, contentValues);
+        if (result==-1)
+            return true;
+        else
+            return false;
+
+    }
+
+    public void deleteOrder(String ID)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete("order","id=?",new String[] {ID});
+        db.close();
+
+    }
+
+    public void updateData (Order order,String ID,String meals, String numOfMeals)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("id", order.getId());
+        contentValues.put("time", order.getTime());
+        contentValues.put("delivery", order.isDelivery());
+        contentValues.put("price", order.getPrice());
+        contentValues.put("restaurant_id",order.getRestaurant_id());
+        contentValues.put("time_delivered",order.getTime_delivered());
+        contentValues.put("done", order.isDone());
+        contentValues.put("cusId", order.getCusId());
+        contentValues.put("meals", meals);
+        contentValues.put("numberOfMeals", numOfMeals);
+        db.update("Order",contentValues,"id=?",new String[] {ID});
+    }
+    public boolean reserve (Reservation reservation)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues c = new ContentValues();
+        c.put("numOfPeople", reservation.getNoOfPeople());
+        c.put("timeReserved", reservation.getTimeReserved());
+        c.put("timeMade", reservation.getTimeMade());
+        long result = db.insert("reservation",null, c);
+        if (result==-1)
+            return true;
+        else
+            return false;
+
+    }
+
+    public void updateReservation (Reservation reservation, String ID)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues c = new ContentValues();
+        c.put("numOfPeople", reservation.getNoOfPeople());
+        c.put("timeReserved", reservation.getTimeReserved());
+        db.update("Reservation", c,"id=?",new String[] {ID});
+    }
+
+    public void deleteReservation(String ID)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete("Reservation","id=?",new String[] {ID});
+        db.close();
+
+    }
+
+    public boolean smokingArea(String id)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor c = db.rawQuery("SELECT smokingArea FROM branch WHERE id = "+id,null);
+        if (c.equals("yes"))
+            return true;
+        else
+            return false;
+    }
+
+    public List<String> getMenu(String id){
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor c;
+        ArrayList<String> menu = new ArrayList<String>();
+        c = db.rawQuery("SELECT name, price FROM Item WHERE resID = "+id,null);
+        if(c!=null){
+            c.moveToFirst();
+            do {
+                menu.add(Integer.parseInt(c.getString(0)), c.getString(1));
+            }
+            while (c.moveToNext());
+            c.close();
+        }
+        return menu;
+
+    }
+
+
+    public boolean kidsArea(String id)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor c = db.rawQuery("SELECT kidsArea FROM branch WHERE id = "+id,null);
+        if (c.equals("yes"))
+            return true;
+        else
+            return false;
+    }
+
+    public boolean delivery(String id)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor c = db.rawQuery("SELECT delivery FROM branch WHERE id = "+id,null);
+        if (c.equals("yes"))
+            return true;
+        else
+            return false;
+    }
+
+    public boolean insertCompliant(String compliant, String bID, String rID, String cID)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("branchID", bID);
+        contentValues.put("resID", rID);
+        contentValues.put("customer_ID", cID);
+        contentValues.put("file", compliant);
+        long result = db.insert("complian",null, contentValues);
+        if (result==-1)
+            return true;
+        else
+            return false;
+
+    }
 
     @Override
     public void onCreate(SQLiteDatabase db) {

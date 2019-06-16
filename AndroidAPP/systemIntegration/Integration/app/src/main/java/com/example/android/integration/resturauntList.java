@@ -87,6 +87,9 @@ public class resturauntList extends AppCompatActivity {
      //   addItemsOnSpinner2((String) show.getTag());
         Log.i("iiiiiiiiii", (String) show.getTag());
         Log.i("iiiiiiiiii",data2[2]);
+
+        //Log.i("iiiiiiiiii", (String) show.getTag());
+        //Log.i("iiiiiiiiii",data2[2]);
         intent.putExtra("info",data2);
         startActivity(intent) ;
     }
