@@ -97,16 +97,24 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
+                    {% for r in rest %}
+                        <tr>
                     <!-- Select all from db - backend -->
-                    <td><input style="width: 95px;" type="text" name="restaurantname" value="nour"></td>
+                        <td><input style="width: 95px;" type="text" name="restaurantname" value="{{r[1]}}"></td>
+                        <td><input style="width: 95px;" type="time" name="timestart" value="{{r[2]}}"></td>
+                        <td><input style="width: 95px;" type="text" name="timeend" value="{{r[3]}}"></td>
+                        <td><input style="width: 95px;" type="text" name="kidsmenu" value="{{r[4]}}"></td>
+                        <td><input type="submit" name="edit" value="Edit"></td>
+                        <td><input type="submit" name="delete" value="Delete"></td>
+                    <!--<td><input style="width: 95px;" type="text" name="restaurantname" value="nour"></td>
                     <td><input style="width: 95px;" type="time" name="timestart" value="9 am"></td>
                     <td><input style="width: 95px;" type="text" name="timeend" value="11 pm"></td>
                     <td><input style="width: 95px;" type="text" name="kidsmenu" value="no"></td>
                     <td><input type="submit" name="edit" value="Edit"></td>
-                    <td><input type="submit" name="delete" value="Delete"></td>
+                    <td><input type="submit" name="delete" value="Delete"></td>-->
                     <!-- add button add that shows empty row i will fill and click add to add to db -->
                     </tr>
+                    {% endfor %}
                     </tbody>
                     </table>
                     </form>
@@ -123,16 +131,18 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
+                    {% for i in item %}
+                        <tr>
                     <!-- Select all from db - backend -->
-                    <th scope="row">1</th>
-                    <td><input style="width: 95px;" type="text" name="name" value="Burger"></td>
-                    <td><input style="width: 95px;" type="text" name="price" value="11"></td>
-                    <td><input style="width: 95px;" type="text" name="kidsmenu" value="no"></td>
-                    <td><input type="submit" name="edit" value="Edit"></td>
-                    <td><input type="submit" name="delete" value="Delete"></td>
+                        <th scope="row">{{i[0]}}</th>
+                        <td><input style="width: 95px;" type="text" name="name" value={{i[2]}}></td>
+                        <td><input style="width: 95px;" type="text" name="price" value={{i[3]}}></td>
+                        <td><input style="width: 95px;" type="text" name="kidsmenu" value={{i[5]}}></td>
+                        <td><input type="submit" name="edit" value="Edit"></td>
+                        <td><input type="submit" name="delete" value="Delete"></td>
                     <!-- add button add that shows empty row i will fill and click add to add to db -->
-                    </tr>
+                        </tr>
+                    {% endfor %}
                     </tbody>
                     </table>
                     </form>
@@ -151,18 +161,20 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
+                    {% for b in branch %}
+                        <tr>
                     <!-- Select all from db - backend -->
-                    <th scope="row">1</th>
-                    <td><input style="width: 95px;" type="text" name="address" value="Haram"></td>
-                    <td><input style="width: 95px;" type="text" name="tables" value="11"></td>
-                    <td><input style="width: 95px;" type="text" name="delivery" value="yes"></td>
-                    <td><input style="width: 95px;" type="text" name="kids area" value="no"></td>
-                    <td><input style="width: 95px;" type="text" name="smoking area" value="no"></td>
-                    <td><input type="submit" name="edit" value="Edit"></td>
-                    <td><input type="submit" name="delete" value="Delete"></td>
+                        <th scope="row">{{b[0]}}</th>
+                        <td><input style="width: 95px;" type="text" name="address" value={{b[1]}}></td>
+                        <td><input style="width: 95px;" type="text" name="tables" value={{b[2]}}></td>
+                        <td><input style="width: 95px;" type="text" name="delivery" value={{b[3]}}></td>
+                        <td><input style="width: 95px;" type="text" name="kids area" value={{b[5]}}></td>
+                        <td><input style="width: 95px;" type="text" name="smoking area" value={{b[6]}}></td>
+                        <td><input type="submit" name="edit" value="Edit"></td>
+                        <td><input type="submit" name="delete" value="Delete"></td>
                     <!-- add button add that shows empty row i will fill and click add to add to db -->
-                    </tr>
+                        </tr>
+                    {% endfor %}
                     </tbody>
                     </table>
                     </form>
@@ -183,21 +195,22 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
+                    {% for o in order %}
+                        <tr>
                     <!-- Select all from db - backend -->
-                    <th scope="row">1</th>
-                    <td><input style="width: 95px;" type="text" name="id" value="10"></td>
-                    <td><input style="width: 95px;" type="text" name="meals_number" value="10"></td>
-                    <td><input style="width: 95px;" type="text" name="meals_name" value="pizza"></td>
-                    <td><input style="width: 95px;" type="text" name="time" value="10"></td>
-                    <td><input style="width: 95px;" type="text" name="delivery" value="no"></td>
-                    <td><input style="width: 95px;" type="text" name="price" value="10"></td>
-                    <td><input style="width: 95px;" type="text" name="delivered" value="no"></td>
-                    <td><input style="width: 95px;" type="text" name="user_id" value="1"></td>
-                    <td><input type="submit" name="edit" value="Edit"></td>
-                    <td><input type="submit" name="delete" value="Delete"></td>
+                            <th scope="row">{{o[0]}}</th>
+                            <td><input style="width: 95px;" type="text" name="meals_number" value={{o[1]}}></td>
+                            <td><input style="width: 95px;" type="text" name="meals_name" value={{o[2]}}></td>
+                            <td><input style="width: 95px;" type="text" name="time" value={{o[3]}}></td>
+                            <td><input style="width: 95px;" type="text" name="delivery" value={{o[4]}}></td>
+                            <td><input style="width: 95px;" type="text" name="price" value={{o[5]}}></td>
+                            <td><input style="width: 95px;" type="text" name="delivered" value={{o[7]}}></td>
+                            <td><input style="width: 95px;" type="text" name="user_id" value={{o[9]}}></td>
+                            <td><input type="submit" name="edit" value="Edit"></td>
+                            <td><input type="submit" name="delete" value="Delete"></td>
                     <!-- add button add that shows empty row i will fill and click add to add to db -->
-                    </tr>
+                        </tr>
+                    {% endfor %}
                     </tbody>
                     </table>
                     </form>
@@ -216,19 +229,20 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
+                    {% for b in branch %}
+                        <tr>
                     <!-- Select all from db - backend -->
-                    <th scope="row">1</th>
-                    <td><input style="width: 95px;" type="text" name="id" value="10"></td>
-                    <td><input style="width: 95px;" type="text" name="people_number" value="10"></td>
-                    <td><input style="width: 95px;" type="text" name="branch_id" value="11"></td>
-                    <td><input style="width: 95px;" type="text" name="table_id" value="10"></td>
-                    <td><input style="width: 95px;" type="text" name="time_reserved" value="10"></td>
-                    <td><input style="width: 95px;" type="text" name="time_made" value="9"></td>
-                    <td><input type="submit" name="edit" value="Edit"></td>
-                    <td><input type="submit" name="delete" value="Delete"></td>
+                        <th scope="row">{{b[0]}}</th>
+                        <td><input style="width: 95px;" type="text" name="people_number" value={{b[2]}}></td>
+                        <td><input style="width: 95px;" type="text" name="branch_id" value={{b[3]}}></td>
+                        <td><input style="width: 95px;" type="text" name="table_id" value={{b[4]}}></td>
+                        <td><input style="width: 95px;" type="text" name="time_reserved" value={{b[6]}}></td>
+                        <td><input style="width: 95px;" type="text" name="time_made" value={{b[7]}}></td>
+                        <td><input type="submit" name="edit" value="Edit"></td>
+                        <td><input type="submit" name="delete" value="Delete"></td>
                     <!-- add button add that shows empty row i will fill and click add to add to db -->
-                    </tr>
+                        </tr>
+                    {% endfor %}
                     </tbody>
                     </table>
                     </form>
@@ -245,17 +259,18 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
+                    {% for t in table %}
+                        <tr>
                     <!-- Select all from db - backend -->
-                    <th scope="row">1</th>
-                    <td><input style="width: 95px;" type="text" name="id" value="10"></td>
-                    <td><input style="width: 95px;" type="text" name="branch_id" value="10"></td>
-                    <td><input style="width: 95px;" type="text" name="number_of_seats" value="10"></td>
-                    <td><input style="width: 95px;" type="text" name="reserved" value="yes"></td>
-                    <td><input type="submit" name="edit" value="Edit"></td>
-                    <td><input type="submit" name="delete" value="Delete"></td>
+                        <th scope="row">{{t[0]}}</th>
+                        <td><input style="width: 95px;" type="text" name="branch_id" value={{t[1]}}></td>
+                        <td><input style="width: 95px;" type="text" name="number_of_seats" value={{t[2]}}></td>
+                        <td><input style="width: 95px;" type="text" name="reserved" value={{t[3]}}></td>
+                        <td><input type="submit" name="edit" value="Edit"></td>
+                        <td><input type="submit" name="delete" value="Delete"></td>
                     <!-- add button add that shows empty row i will fill and click add to add to db -->
-                    </tr>
+                        </tr>
+                    {% endfor %}
                     </tbody>
                     </table>
                     </form>

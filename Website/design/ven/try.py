@@ -18,15 +18,18 @@ def close_connection(exception):
 
 
 
-def retriveOrder():
+'''def retriveOrder():
     cur = get_db().cursor()
-    cur.execute("SELECT * FROM Order")
+    cur.execute("SELECT * FROM Order ")
 
     order = cur.fetchall()
     #print("hayyy", rows.)
 
-    return render_template('index.html', order=order)
+    return render_template('index.html', order=order)'''
+
 @app.route('/')
+
+
 def retriveCustomer():
     cur = get_db().cursor()
     cur.execute("SELECT * FROM User")
@@ -42,27 +45,59 @@ def retriveReservation():
     res = cur.fetchall()
     #print("hayyy", rows.)
 
-    return render_template('hey.html', res=res)
+    return render_template('index.html', res=res)
 
 def retriveComplain():
     cur = get_db().cursor()
     cur.execute("SELECT * FROM complaint")
 
     complain = cur.fetchall()
-    #print("hayyy", rows.)
 
-    return render_template('hey.html', complain=complain)
+    return render_template('index.html', complain=complain)
+
+
+def informationAboutRestaurant():
+    cur = get_db().cursor()
+    cur.execute("SELECT * FROM restaurant")
+
+    rest = cur.fetchall()
+
+    return render_template('index.html', rest=rest)
+
+def items():
+        cur = get_db().cursor()
+        cur.execute("SELECT * FROM Item")
+
+        item = cur.fetchall()
+
+        return render_template('index.html', item=item)
+
+
+def retriveBranches():
+    cur = get_db().cursor()
+    cur.execute("SELECT * FROM branch")
+
+    data = cur.fetchall()
+
+    return render_template('index.html', branch=data)
+
+
+def retriveTables():
+    cur = get_db().cursor()
+    cur.execute("SELECT * FROM Table")
+
+    data = cur.fetchall()
+
+    return render_template('index.html', table=data)
 
 
 def main():
-    database = "C:\\sqlite\db\pythonsqlite.db"
-
     '''# create a database connection
     conn = create_connection(database)
     with conn:
         print("1. Query task by priority:")
         select_task_by_priority(conn, 1)'''
-    retriveOrder()
+    #retriveOrder()
     retriveCustomer()
     retriveReservation()
     retriveComplain()
