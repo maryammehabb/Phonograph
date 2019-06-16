@@ -383,52 +383,29 @@ public class dbHelper extends SQLiteOpenHelper {
 
     }
 
-    public String deleteOrder(String userID, String resID)
+    public void deleteOrder(String ID)
     {
-        int x =-1;
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor c ;
-        String sql = "SELECT * FROM Orders WHERE userID = ? and resID = ? ";
-        c = db.rawQuery(sql ,new String[]{userID, resID} );
-        if (c.isAfterLast()){
-            db.close();
-            return "We couldn't found the order you made";
-        }
-        x  = db.delete("Orders","resID = ? and userID = ? and done = ?",new String[] {resID,userID,"0"});
-        Log.d("_______________" ,"___________________________________________________________");
-        Log.d("x", Integer.toString(x));
-        if(x == 0) return "you can not delete the order now, it's on its way.";
-        else return "Order deleted.";
-
+        db.delete("order","id=?",new String[] {ID});
+        db.close();
 
     }
 
-    public String updateData (Order order,String resID,String userID)
+    public void updateData (Order order,String ID,String meals, String numOfMeals)
     {
-        int x = -1;
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor c ;
-        String sql = "SELECT * FROM Orders WHERE userID = ? and resID = ? ";
-        c = db.rawQuery(sql ,new String[]{userID, resID} );
-        if (c.isAfterLast()){
-            db.close();
-            return "We couldn't found the order you made";
-        }
         ContentValues contentValues = new ContentValues();
+        contentValues.put("id", order.getId());
         contentValues.put("time", order.getTime());
         contentValues.put("delivery", order.isDelivery());
         contentValues.put("price", order.getPrice());
-        contentValues.put("resID",order.getRestaurant_id());
-        contentValues.put("timeDelivered",order.getTime_delivered());
+        contentValues.put("restaurant_id",order.getRestaurant_id());
+        contentValues.put("time_delivered",order.getTime_delivered());
         contentValues.put("done", order.isDone());
-        contentValues.put("userID", order.getCusId());
-        contentValues.put("items", order.getMeals());
-        contentValues.put("numOfOrders", order.getNumberOfMeals());
-        x = db.update("Orders", contentValues, "resID = ? and userID = ? and done = ?",new String[] {resID,userID,"0"});
-        Log.d("__________________" ,"_________________________________________________________-");
-        Log.d("x", Integer.toString(x));
-        if(x==0) return "You can not update the order now, it's on its way.";
-        return "Order Updated.";
+        contentValues.put("cusId", order.getCusId());
+        contentValues.put("meals", meals);
+        contentValues.put("numberOfMeals", numOfMeals);
+        db.update("Order",contentValues,"id=?",new String[] {ID});
     }
     public boolean reserve (Reservation reservation)
     {
