@@ -137,3 +137,7 @@ session = DBSession()
 #session.add(u)
 #session.commit()
 
+s = session.query(User).filter(User.id == 1).first()
+s.name = "edited"
+session.commit()
+
