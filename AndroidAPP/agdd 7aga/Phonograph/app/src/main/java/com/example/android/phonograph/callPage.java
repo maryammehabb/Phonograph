@@ -213,7 +213,8 @@ public class callPage extends AppCompatActivity implements RecognitionListener {
         return  price;
     }
 
-    public int updateDatabase(String intent){
+    public String updateDatabase(String intent){
+        String s = "";
         int ret = -1;
         if (intentt.equals("\"make order\"")){
             Date date = new Date();
@@ -243,14 +244,11 @@ public class callPage extends AppCompatActivity implements RecognitionListener {
             return "Order was done";
         }
 
-        /*if (intentt.equals("\"delete order\""))
+        if (intentt.equals("\"delete order\""))
         {
-            String meals = details.get(0);
-            int numberOfMeals = Integer.valueOf(details.get(1));
-            Order order = new Order(time, true , 0 , customerID,meals , numberOfMeals, resID );
-            String id =details.get(0);
             dbHelper d=new dbHelper(getApplicationContext());
-            d.deleteOrder(id);
+            s = d.deleteOrder(info[0],info[2]);
+            return s;
 
         }
         if (intentt.equals("\"edit order\""))
@@ -266,8 +264,8 @@ public class callPage extends AppCompatActivity implements RecognitionListener {
             int numberOfMeals = Integer.valueOf(details.get(1));
             Order order = new Order(timeMade, true, price, customerID, meals, numberOfMeals, resID);
             dbHelper d=new dbHelper(getApplicationContext());
-            d.updateData(order,id,newOrder,numberOfMeals);
-
+            s = d.updateData(order, info[2], info[0]);
+            return s;
 
         }
         //make if condition for each intent
@@ -476,7 +474,8 @@ public class callPage extends AppCompatActivity implements RecognitionListener {
         fulfillment = object.getJSONObject("fulfillment");
         parameters = object.getJSONObject("parameters");
 
-        if(intentt.equals("\"make order\"") && !parameters.getString(parameters.names().get(0).toString()).equals("[]")){
+        if(intentt.equals("\"make order\"") && !parameters.getString(parameters.names().get(0).toString()).equals("[]") ||
+                intentt.equals("\"edit order\"") && !parameters.getString(parameters.names().get(0).toString()).equals("[]")){
             dbHelper db = new dbHelper(this);
 
             rightMeal= db.checkMeal(parameters.getString(parameters.names().get(0).toString()).substring(2,parameters.getString(parameters.names().get(0).toString()).length()-2), info[2]);
