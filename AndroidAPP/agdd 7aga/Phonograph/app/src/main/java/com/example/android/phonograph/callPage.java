@@ -217,6 +217,11 @@ public class callPage extends AppCompatActivity implements RecognitionListener {
         String s = "";
         int ret = -1;
         if (intentt.equals("\"make order\"")){
+            Date date = new Date();
+            String strDateFormat = "hh:mm:ss a";
+            DateFormat dateFormat = new SimpleDateFormat(strDateFormat);
+            String formattedDate= dateFormat.format(date);
+            timeMade=formattedDate;
             Log.d("NAGHAM", "MAKE ORDER");
             Log.d("info", details.get(0));
             Log.d("info", details.get(1));
@@ -228,7 +233,7 @@ public class callPage extends AppCompatActivity implements RecognitionListener {
             //make function in dbHelper to access items table and calc price
             //make a function in dbHelper insertOrde
 
-            Order order = new Order(time, true, price, customerID, meals, numberOfMeals, resID);
+            Order order = new Order(timeMade, true, price, customerID, meals, numberOfMeals, resID);
 
             //order.setMeals(meals);
             //order.setNumberOfMeals(numberOfMeals);
@@ -248,11 +253,16 @@ public class callPage extends AppCompatActivity implements RecognitionListener {
         }
         if (intentt.equals("\"edit order\""))
         {
+            Date date = new Date();
+            String strDateFormat = "hh:mm:ss a";
+            DateFormat dateFormat = new SimpleDateFormat(strDateFormat);
+            String formattedDate= dateFormat.format(date);
+            timeMade=formattedDate;
             String meals = details.get(0);
             float price = 0;
             price = calcPrice();
             int numberOfMeals = Integer.valueOf(details.get(1));
-            Order order = new Order(time, true, price, customerID, meals, numberOfMeals, resID);
+            Order order = new Order(timeMade, true, price, customerID, meals, numberOfMeals, resID);
             dbHelper d=new dbHelper(getApplicationContext());
             s = d.updateData(order, info[2], info[0]);
             return s;
@@ -371,7 +381,7 @@ public class callPage extends AppCompatActivity implements RecognitionListener {
             s= d.openAndCloseTime(info[2]);
             return s;
         }
-        return null;
+        return "";
     }
 
 
@@ -651,7 +661,6 @@ public class callPage extends AppCompatActivity implements RecognitionListener {
                 intent.putExtra("info",i);
                 startActivity(intent);
 
-
             }
             boolean flag = true;
             for (int i = 0 ; i<details.size() ; i++ ){
@@ -707,6 +716,7 @@ public class callPage extends AppCompatActivity implements RecognitionListener {
                     hold=4000;
                 }
                 else {
+                    if(!updateDatabase(x).equals(""))
                     s =  updateDatabase(x);
                     hold = 3000;
                 }
