@@ -6,17 +6,18 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Build;
-import android.support.annotation.RequiresPermission;
 import android.util.Log;
 
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.lang.reflect.Array;
+import java.security.PublicKey;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class dbHelper extends SQLiteOpenHelper {
@@ -36,7 +37,8 @@ public class dbHelper extends SQLiteOpenHelper {
     String Reservation = "Reservation";
     String Admin = "Admin";
 
-    public dbHelper(Context context) {
+    public dbHelper(Context context)
+    {
         super(context, DB_NAME, null, DB_VERSION);
         if(Build.VERSION.SDK_INT >= 17)
             DB_PATH = context.getApplicationInfo().dataDir+"/databases/";
@@ -74,29 +76,6 @@ public class dbHelper extends SQLiteOpenHelper {
             tempDB.close();
         return tempDB!=null?true:false;
     }
-    /*private void exportDB() {
-        try{
-            final String inFileName = "/data/data/com.example.android.phonograph/databases/PH.db";
-            File dbFile = new File(inFileName);
-            FileInputStream fis = new FileInputStream(dbFile);
-            //InputStream myInput = mContext.getAssets().open(DB_NAME);
-            OutputStream myOutput = mContext.getAssets().open(DB_NAME,);
-
-            byte[] buffer = new byte[1024];
-            int length;
-            while ((length=fis.read(buffer))>0){
-                myOutput.write(buffer, 0 , length);
-            }
-            myOutput.flush();
-            myOutput.close();
-            fis.close();
-
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }*/
     public void copyDatabase(){
         try{
             InputStream myInput = mContext.getAssets().open(DB_NAME);
@@ -261,19 +240,15 @@ public class dbHelper extends SQLiteOpenHelper {
         return n;
     }
     public List<Restaurant> getAllRestraunts(){
-        Log.d("Nagham","get all");
         List<Restaurant> temp = new ArrayList<Restaurant>();
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor c;
-        boolean kidsMenu = true;
         try {
             c = db.rawQuery("SELECT * FROM restaurant", null);
             if(c==null) return null;
             c.moveToFirst();
             do{
-                if (c.getString(4).equals("0")) kidsMenu=false;
-                Log.d("Nagham", c.getString(1));
-                Restaurant r = new Restaurant(c.getString(0),c.getString(1),c.getString(2),c.getString(3),kidsMenu);
+                Restaurant r = new Restaurant(c.getString(0),c.getString(1),c.getString(2),c.getString(3));
                 temp.add(r);
             }
             while (c.moveToNext());{
@@ -288,49 +263,44 @@ public class dbHelper extends SQLiteOpenHelper {
     {
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor c;
-        boolean kidsMenu = true;
         c = db.rawQuery("SELECT * FROM restaurant WHERE ID ="+id,null );
         Cursor c1;
         ArrayList<item> menu = new ArrayList<item>();
         c1 = db.rawQuery("SELECT * FROM Item WHERE resID = "+id,null);
-        if(c1!=null){
+        if(c1!=null)
+        {
             c1.moveToFirst();
             do {
-            item i;
-            item menu_item = new item(c1.getString(0),c1.getString(1),c1.getString(2),c1.getFloat(3));
-            menu.add(menu_item);
+                item i;
+                item menu_item = new item(c1.getString(0),c1.getString(1),c1.getString(2),c1.getFloat(3));
+                menu.add(menu_item);
             }
             while (c1.moveToNext());
             c1.close();
         }
-        c1 = db.rawQuery("SELECT Address FROM branch WHERE resID = "+id,null);
-        String Locations="";
-        if(c1 != null) {
-            c1.moveToFirst();
-            do {
-                Locations += c1.getString(0) + " , ";
-            }
-            while (c1.moveToNext());
-        }
-        if(Locations.length()>0)
-            Locations=Locations.substring(0,Locations.length()-2);
-        Log.i("ooooo",Locations);
-        if(c==null)
+        ArrayList<Branch> Branches = new ArrayList<>();
+        Log.i("oooooo" ,id);
+        c1 = db.rawQuery("SELECT id,address FROM branch WHERE resID ="+id,null);
+        Log.i("count", String.valueOf(c1.getCount()));
+        c1.moveToFirst();
+        if(c1.getCount()>0)
         {
+                do {
+                    Branch b = new Branch(c1.getString(0), c1.getString(1));
+                    Branches.add(b);
+                }
+                while (c1.moveToNext());
+
+        }
+        if (c == null || c.getCount()==0) {
             return null;
         }
-
-        if (c.isAfterLast())
-        {
-            db.close();
-        }
         c.moveToFirst();
-        if (c.getString(4).equals("0")) kidsMenu=false;
-        Restaurant r= new Restaurant( c.getString(0),c.getString(1),c.getString(2),c.getString(3),kidsMenu,menu);
+        Restaurant r= new Restaurant( c.getString(0),c.getString(1),c.getString(2),c.getColumnName(3),Branches,menu);
         c.close();
+        db.close();
         return r;
     }
-
     public boolean checkMeal(String meal, String restID){
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor c;
@@ -379,7 +349,7 @@ public class dbHelper extends SQLiteOpenHelper {
         contentValues.put("numOfOrders", order.getNumberOfMeals());
         long result = db.insert("Orders",null, contentValues);
         Log.d("Nagham " , String.valueOf(result));
-       return (int)result;
+        return (int)result;
 
     }
 
@@ -434,15 +404,18 @@ public class dbHelper extends SQLiteOpenHelper {
     {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues c = new ContentValues();
+        c.put("userID",reservation.getCusID());
         c.put("numOfPeople", reservation.getNoOfPeople());
+        c.put("branchID",reservation.getBranchID());
+        c.put("tableID",reservation.getTableID());
+        c.put("resID",reservation.getResID());
         c.put("timeReserved", reservation.getTimeReserved());
         c.put("timeMade", reservation.getTimeMade());
         long result = db.insert("reservation",null, c);
-        if (result==-1)
-            return true;
+        if (result==-1){
+            return true;}
         else
             return false;
-
     }
 
     public void updateReservation (Reservation reservation, String ID)
@@ -454,30 +427,182 @@ public class dbHelper extends SQLiteOpenHelper {
         db.update("Reservation", c,"id=?",new String[] {ID});
     }
 
-    public void deleteReservation(String ID)
+    public int deleteReservation(String cusID, String ResID, String BranchID)
     {
         SQLiteDatabase db = this.getWritableDatabase();
-        db.delete("Reservation","id=?",new String[] {ID});
+        int i;
+        i=db.delete("Reservation","userID= "+cusID+" AND resID= "+ResID+" AND branchID= "+BranchID,null);
         db.close();
+        if(i==-1)
+       {
+           return 0;
+       }
+       return 1;
 
     }
 
- public boolean insertCompliant(String compliant, String bID, String rID, String cID)
+    public String insertCompliant(String compliant, String bID, String rID, String cID)
     {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put("branchID", bID);
         contentValues.put("resID", rID);
-        contentValues.put("customer_ID", cID);
+        contentValues.put("user_ID", cID);
         contentValues.put("file", compliant);
-        long result = db.insert("complian",null, contentValues);
+        long result = db.insert("complaint",null, contentValues);
         if (result==-1)
-            return false;
+            return "We had a problem saving your complaint, please try again.";
         else
-            return true;
+            return "Your complain will be dealt with.";
 
     }
+    public ArrayList<String> SelectBestTables(int num_of_people , ArrayList<Table> Empty_Tables)
+    {
+        int count=0;
+        ArrayList<String> Best_Tables = new ArrayList<String>();
+        Collections.sort(Empty_Tables);
+        for(int i=0 ;count<num_of_people; i++ )
+        {
+            count+=Integer.valueOf(Empty_Tables.get(i).Num_of_Seats);
+            Best_Tables.add(Empty_Tables.get(i).Num_of_Seats);
+            if(i==Empty_Tables.size())
+                return null;
+        }
+        return Best_Tables;
+    }
 
+    public ArrayList<String> CheckTables(String branch_id , int numofpeople)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor c;
+        c = db.rawQuery("SELECT * FROM Tables WHERE branchID ="+branch_id + " AND reserved = 0 " ,null );
+        ArrayList<Table> Empty_Tables= new ArrayList<>();
+        if(c!=null)
+        {
+            c.moveToFirst();
+            do {
+                Empty_Tables.add(new Table(c.getString(0),c.getString(1),c.getString(2),Boolean.valueOf(c.getString(3))));
+            }
+            while (c.moveToNext());
+            c.close();
+        }
+        return  SelectBestTables(numofpeople,Empty_Tables);
+    }
+    public Reservation getReservation(String userId ,String RestID , String branchID )
+    {
+        Reservation R;
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor c;
+        c = db.rawQuery("SELECT * FROM Reservation WHERE resID = " +RestID+ " AND userID= "+userId+" AND branchID= "+ branchID,null);
+        Log.i("rrrrrrrrrr","rrrrrrrrrr");
+        c.moveToFirst();
+        if(c.getCount()>0)
+        {
+
+            do {
+                Log.i("BBBBBBBBBBBBBBB",c.getString(1));
+                R= new Reservation(c.getString(0), c.getString(1),c.getInt(2),c.getString(3),c.getString(4),c.getString(5),c.getString(6),c.getString(7));
+            }
+            while (c.moveToNext());
+            c.close();
+        }
+        else
+        {
+            return null;
+        }
+        return R;
+    }
+
+    public boolean smokingArea(String id , String ResID)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor c = db.rawQuery("SELECT smokingArea FROM branch WHERE id = "+id+" AND resID = "+ResID,null);
+        c.moveToFirst();
+        if(c.getCount()>0)
+        {
+            if (c.getInt(0)==1)
+                return true;
+            else
+                return false;
+        }
+        return  false;
+    }
+
+    /*public List<String> getMenu(String id){
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor c;
+        ArrayList<String> menu = new ArrayList<String>();
+        c = db.rawQuery("SELECT name, price FROM Item WHERE resID = "+id,null);
+        if(c!=null){
+            c.moveToFirst();
+            do {
+                menu.add(Integer.parseInt(c.getString(0)), c.getString(1));
+            }
+            while (c.moveToNext());
+            c.close();
+        }
+        return menu;
+
+    }*/
+
+    public String openAndCloseTime(String ID)
+    {
+        String s = "";
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor c = db.rawQuery("SELECT timeStart, timeEnd FROM restaurant WHERE id = "+ID,null);
+        c.moveToFirst();
+        if (c.getCount()>0)
+        {
+            s = "it opens at " +c.getString(0)+ "and closes at "+c.getString(1);
+        }
+        return s;
+    }
+
+
+    public boolean kidsArea(String id, String res_ID)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor c = db.rawQuery("SELECT kidsArea FROM branch WHERE id = "+id+" AND resID = "+res_ID,null);
+        c.moveToFirst();
+        if(c.getCount()>0)
+        {
+            if (c.getInt(0)==1)
+                return true;
+            else
+                return false;
+        }
+        return false;
+    }
+
+    public boolean kidsMenu(String id)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor c = db.rawQuery("SELECT kidsMenue FROM restaurant WHERE id = "+id,null);
+        c.moveToFirst();
+        if(c.getCount()>0)
+        {
+            if (c.getInt(0)==1)
+                return true;
+            else
+                return false;
+        }
+        return false;
+    }
+
+    public boolean delivery(String id, String ResID)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor c = db.rawQuery("SELECT delivery FROM branch WHERE id = "+id+" AND resID= " +ResID,null);
+        c.moveToFirst();
+        if(c.getCount()>0)
+        {
+            if (c.getInt(0)==1)
+                return true;
+            else
+                return false;
+        }
+        return false;
+    }
     @Override
     public void onCreate(SQLiteDatabase db) {
 
