@@ -5,6 +5,7 @@
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_SUPERUSER"/>
 
     <application
         android:allowBackup="true"
@@ -13,21 +14,27 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.example.android.phonograph.press" />
-        <activity android:name="com.example.android.phonograph.callPage">
-        </activity>
-        <activity android:name="com.example.android.phonograph.resturauntList" />
-        <activity android:name="com.example.android.phonograph.first">
+        <activity android:name=".press" />
+        <activity android:name=".callPage"></activity>
+        <activity android:name=".resturauntList" />
+        <activity android:name=".first">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.example.android.phonograph.signUp" />
-        <activity android:name="com.example.android.phonograph.Sample_Restaurant" />
-        <activity android:name="com.example.android.phonograph.Login" />
-        <activity android:name="com.example.android.phonograph.editInformation"></activity>
+        <activity android:name=".signUp" />
+        <activity android:name=".Sample_Restaurant" />
+        <activity android:name=".Login" />
+        <activity android:name=".editInformation" />
+        <activity android:name=".ExportDB">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

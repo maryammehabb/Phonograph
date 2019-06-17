@@ -2,46 +2,16 @@ package com.example.android.phonograph;
 
 
 public class Reservation {
-    private String ID;
-    private String cusID;
+    private int ID;
+    private int cusID;
+    //private int customerID;
     private int noOfPeople;
-    private  String branchID;
-    private String tableID;
-    private String resID;
+    private int tableID;
+    //private int resID;
     private String timeReserved;
-
-    public String getBranchID() {
-        return branchID;
-    }
-
-    public String getResID() {
-        return resID;
-    }
-
     private String timeMade;
-    public Reservation(String ID, String cusID, int noOfPeople, String branchID, String tableID, String resID, String timeReserved, String timeMade) {
-        this.ID = ID;
-        this.cusID = cusID;
-        this.noOfPeople = noOfPeople;
-        this.branchID = branchID;
-        this.tableID = tableID;
-        this.resID = resID;
-        this.timeReserved = timeReserved;
-        this.timeMade = timeMade;
-    }
 
-    public Reservation( String cusID, int noOfPeople, String tableID, String branchID, String resID, String timeReserved, String timeMade) {
-        this.cusID = cusID;
-        this.noOfPeople = noOfPeople;
-        this.tableID = tableID;
-        this.branchID = branchID;
-        this.resID = resID;
-        this.timeReserved = timeReserved;
-        this.timeMade = timeMade;
-    }
-
-
-    public Reservation(String cusID, int noOfPeople, String tableID, String timeReserved, String timeMade) {
+    public Reservation(int cusID, int noOfPeople, int tableID, String timeReserved, String timeMade) {
         this.cusID = cusID;
         this.noOfPeople = noOfPeople;
         this.tableID = tableID;
@@ -49,15 +19,15 @@ public class Reservation {
         this.timeMade = timeMade;
     }
 
-    public String getCusID() {
+    public int getCusID() {
         return cusID;
     }
 
-    public void setCusID(String cusID) {
+    public void setCusID(int cusID) {
         this.cusID = cusID;
     }
 
-    public void setID(String ID) {
+    public void setID(int ID) {
         this.ID = ID;
     }
 
@@ -65,7 +35,7 @@ public class Reservation {
         this.noOfPeople = noOfPeople;
     }
 
-    public void setTableID(String tableID) {
+    public void setTableID(int tableID) {
         this.tableID = tableID;
     }
 
@@ -77,7 +47,7 @@ public class Reservation {
         this.timeMade = timeMade;
     }
 
-    public String getID() {
+    public int getID() {
         return ID;
     }
 
@@ -85,7 +55,7 @@ public class Reservation {
         return noOfPeople;
     }
 
-    public String getTableID() {
+    public int getTableID() {
         return tableID;
     }
 

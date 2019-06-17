@@ -10,7 +10,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 
 import java.io.IOException;
@@ -30,8 +29,6 @@ public class signUp extends AppCompatActivity {
     private TextView tvPhone;
 
     private Button btnSignUp;
-
-    private boolean validate = true;
 
     dbHelper dbHelper;
 
@@ -59,43 +56,12 @@ public class signUp extends AppCompatActivity {
         btnSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                validate = validate();
-                if (validate==true)
                 signUp();
 
             }
         });
 
 
-    }
-
-    public boolean validate(){
-        if (!etName.getText().toString().matches("[a-zA-z]+")){
-            Toast.makeText(getBaseContext(), "Your name shouldn't contain numbers or special charachters.", Toast.LENGTH_LONG).show();
-            return false;
-        }
-        else if(!etEmail.getText().toString().matches("^[\\w-.]+@([\\w-]+\\.)+[\\w-]{2,3}$")){
-            Toast.makeText(getBaseContext(), "Enter a correct email, please", Toast.LENGTH_LONG).show();
-            return false;
-        }
-        else if (!etPassword.getText().toString().matches("^.{4,}$")){
-            Toast.makeText(getBaseContext(), "Password should be at least 4 characters.", Toast.LENGTH_LONG).show();
-            return false;
-        }
-        else if (!etPassword.getText().toString().matches("^.{4,15}$")){
-            Toast.makeText(getBaseContext(), "Password should be at most 15 characters.", Toast.LENGTH_LONG).show();
-            return false;
-        }
-        else if (!etPassword.getText().toString().matches("^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{4,15}$")){
-            Toast.makeText(getBaseContext(), "Password should contain at least one number and one letter", Toast.LENGTH_LONG).show();
-            return false;
-        }
-        else if (!etPhone.getText().toString().matches("^(01)(5|1|2|0)(\\d){8}$")){
-            Toast.makeText(getBaseContext(), "Please, enter a correct phone number.", Toast.LENGTH_LONG).show();
-            return false;
-        }
-
-        return true;
     }
 
     public void signUp (){

@@ -26,6 +26,7 @@ public class first extends AppCompatActivity {
         //db.createDatabase();
         btnLoginF = (Button) findViewById(R.id.btnLoginF);
         btnSignUpF = (Button) findViewById(R.id.btnSignUpF);
+
         btnLoginF.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

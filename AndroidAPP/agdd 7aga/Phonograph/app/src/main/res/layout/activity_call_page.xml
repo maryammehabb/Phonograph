@@ -19,6 +19,14 @@
             android:id="@+id/outputText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
+
+        <ImageButton
+            android:id="@+id/btnSpeak"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:src="@drawable/ico_mic" />
+
         <TextView
             android:id="@+id/txtSpeechInput"
             android:layout_width="wrap_content"
