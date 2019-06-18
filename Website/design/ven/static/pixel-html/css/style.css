@@ -263,3 +263,10 @@ hr{
 .nav{
 	padding-top: 10px;
 }
+.modal-backdrop {
+	z-index: 0;
+}
+
+.modal-header{
+	padding-top: 70px;
+}
