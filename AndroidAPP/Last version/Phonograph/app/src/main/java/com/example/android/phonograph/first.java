@@ -14,7 +14,6 @@ public class first extends AppCompatActivity {
 
     Button btnLoginF;
     Button btnSignUpF;
-    dbHelper db;
 
 
     @Override
@@ -22,8 +21,6 @@ public class first extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fisrt);
 
-        db = new dbHelper(this);
-        db.createDatabase();
         btnLoginF = (Button) findViewById(R.id.btnLoginF);
         btnSignUpF = (Button) findViewById(R.id.btnSignUpF);
         btnLoginF.setOnClickListener(new View.OnClickListener() {
